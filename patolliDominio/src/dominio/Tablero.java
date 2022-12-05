@@ -4,11 +4,8 @@
  */
 package dominio;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
@@ -90,5 +87,11 @@ public class Tablero {
         this.centroDelTablero = centroDelTablero;
     }
 
+    public void moverFichaJugador(Jugador jugador, int numCasillasPorAvanzar){
+        // TODO: programar movimiento de la ficha
+    }
     
+    public void ingresarFichaDeJugador(Jugador jugador){
+        // TODO: programar ingreso de la ficha en el tablero
+    }
 }

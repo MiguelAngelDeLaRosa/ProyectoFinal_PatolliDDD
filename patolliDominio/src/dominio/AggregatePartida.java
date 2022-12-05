@@ -5,6 +5,7 @@
 
 package dominio;
 
+import interfaces_dominio.IAggregateRoot;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -13,7 +14,7 @@ import java.util.Queue;
  *
  * @author edw_v
  */
-public class AggregatePartida {
+public class AggregatePartida implements IAggregateRoot {
 
     private int idPartida;
     private List<Jugador> listaDeJugadores;
@@ -22,14 +23,7 @@ public class AggregatePartida {
     private boolean laPartidaHaIniciado;
 
     public AggregatePartida() {
-    }
-
-    public AggregatePartida(int idPartida, List<Jugador> listaDeJugadores, Tablero tablero, boolean laPartidaHaIniciado) {
-        this.idPartida = idPartida;
-        this.listaDeJugadores = listaDeJugadores;
-        this.ordenDeTurnos = new LinkedList<>();
-        this.tablero = tablero;
-        this.laPartidaHaIniciado = laPartidaHaIniciado;
+        this.laPartidaHaIniciado = true;
     }
 
     public int getIdPartida() {
@@ -74,6 +68,100 @@ public class AggregatePartida {
     
     public void asignarOrdenDeTurnos(){
         
+    }
+    
+    /**
+     * Crea el tablero del juego
+     * @param numCasillas 
+     */
+    @Override
+    public void crearTablero(int numCasillas) {
+        tablero = new Tablero(numCasillas);
+    }
+
+    /**
+     * Regresa el verdadero o falso si el numero de jugadores ya es de 4
+     * @return 
+     */
+    @Override
+    public boolean verificarNumeroDeJugadores() {
+        boolean juegoLleno = false; 
+        int numJugadores = 0;
+        for (int i = 0; i < listaDeJugadores.size(); i++) {
+            numJugadores++;
+        }
+        if (numJugadores == 4){
+            return juegoLleno;
+        }
+        return juegoLleno;
+    }
+
+    /**
+     * Agrega un jugador a la partida
+     * @param jugador 
+     */
+    @Override
+    public void agregarJugador(Jugador jugador) {
+        listaDeJugadores.add(jugador);
+    }
+
+    /**
+     * mueve la ficha de un jugador 
+     * @param idJugador
+     * @param numeroDeCasillasPorAvanzar 
+     */
+    @Override
+    public void moverFichaDeJugador(int idJugador, int numeroDeCasillasPorAvanzar) {
+        Jugador jugadorEscogido = null;
+        for (int i = 0; i < listaDeJugadores.size(); i++) {
+            if (listaDeJugadores.get(i).getIdJugador() == idJugador){
+                jugadorEscogido = listaDeJugadores.get(i);
+                tablero.moverFichaJugador(jugadorEscogido, numeroDeCasillasPorAvanzar);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Ingresa una ficha en el tablero
+     * @param idJugador 
+     */
+    @Override
+    public void ingresarFichaDeJugador(int idJugador) {
+        Jugador jugadorEscogido = null;
+        for (int i = 0; i < listaDeJugadores.size(); i++) {
+            if (listaDeJugadores.get(i).getIdJugador() == idJugador){
+                jugadorEscogido = listaDeJugadores.get(i);
+                tablero.ingresarFichaDeJugador(jugadorEscogido);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Regresa el jugador que coincida con el id del parametro
+     * @param idJugador que desea obetener
+     * @return juagdor deseado
+     */
+    @Override
+    public Jugador obtenerJugador(int idJugador) {
+        Jugador jugadorEscogido = null;
+        for (int i = 0; i < listaDeJugadores.size(); i++) {
+            if (listaDeJugadores.get(i).getIdJugador() == idJugador){
+                jugadorEscogido = listaDeJugadores.get(i);
+                return jugadorEscogido;
+            }
+        }
+        return jugadorEscogido;
+    }
+
+    /**
+     * Retorna el tablero
+     * @return tablero
+     */
+    @Override
+    public Tablero obtenerTablero() {
+        return tablero;
     }
     
     
