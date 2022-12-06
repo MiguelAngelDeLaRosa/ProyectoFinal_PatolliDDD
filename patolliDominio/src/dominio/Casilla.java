@@ -12,173 +12,66 @@ import java.awt.Color;
  */
 public class Casilla {
 
-    private int numeroCasilla;
+    private int tipoDeCasilla;
+    private boolean casillaTieneFicha;
 
-    //Coordenadas de los ejes en donde se va a dibujar la casilla.
-    private int puntoEnEjeX;
-    private int puntoEnEjeY;
-
-    //Atributos utilizados para dibujar casillas triangulares solamente.
-    private int[] arregloDePuntosEnEjeX;
-    private int[] arregloDePuntosEnEjeY;
-
-    //Atributos que guardan las coordenadas de dibujado de las fichas en la casilla.
-    private int puntoEnEjeXDeFicha;
-    private int puntoEnEjeYDeFicha;
-
-    //Atributos utilizados para dibujar casillas circulares solamente.
-    private double anguloInicial;
-    private double anguloFinal;
-
-    //Atributo utilizado para definir el tipo de casilla que se va a utilizar.
-    private int tipoCasilla;
-
-    public Casilla() {
+    /**
+     * Constructor que inicializa el atributo tipoDeCasilla al valor del
+     * parámetro recibido.
+     *
+     * @param tipoDeCasilla entero que indica el tipo de casilla.
+     */
+    public Casilla(int tipoDeCasilla) {
+        this.tipoDeCasilla = tipoDeCasilla;
     }
 
     /**
-     * Constructor que inicializa los atributos de la clase al valor de sus
-     * parámetros.
+     * Constructor que inicializa los atributos de la clase al valor de los
+     * parámetros recibidos.
      *
-     * @param puntoEnEjeX coordenada en el eje de las X en donde se va a iniciar
-     * el dibujo de la casilla.
-     * @param puntoEnEjeY coordenada en el eje de las Y en donde se va a iniciar
-     * el dibujo de la casilla.
-     * @param tipoCasilla identificador del tipo de casilla que se va a crear. 1
-     * = casilla central. 2 = casilla cuadrada. 3 = casilla cuadrada con
-     * castigo. 4 = casilla redonda. 5 = casilla triangular.
+     * @param tipoDeCasilla entero que indica el tipo de casilla.
+     * @param casillaTieneFicha booleano que indica si la casilla tiene ficha.
      */
-    public Casilla(int numeroCasilla, int puntoEnEjeX, int puntoEnEjeY, int tipoCasilla, int puntoEnEjeXDeFicha, int puntoEnEjeYDeFicha) {
-        this.numeroCasilla = numeroCasilla;
-        this.puntoEnEjeX = puntoEnEjeX;
-        this.puntoEnEjeY = puntoEnEjeY;
-        this.arregloDePuntosEnEjeX = null;
-        this.arregloDePuntosEnEjeY = null;
-        this.tipoCasilla = tipoCasilla;
-        this.puntoEnEjeXDeFicha = puntoEnEjeXDeFicha;
-        this.puntoEnEjeYDeFicha = puntoEnEjeYDeFicha;
+    public Casilla(int tipoDeCasilla, boolean casillaTieneFicha) {
+        this.tipoDeCasilla = tipoDeCasilla;
+        this.casillaTieneFicha = casillaTieneFicha;
     }
 
     /**
-     * Constructor que inicializa los atributos de la clase al valor de sus
-     * parámetros.
+     * Retorna el tipo de casilla.
      *
-     * @param arregloDePuntosEnEjeX arreglo con las coordenadas en puntoEnEjeX
-     * para dibujar el triángulo.
-     * @param arregloDePuntosEnEjeY arreglo con las coordenadas en puntoEnEjeY
-     * para dibujar el triángulo
-     * @param tipoCasilla identificador del tipo de casilla que se va a crear. 1
-     * = casilla central. 2 = casilla cuadrada. 3 = casilla cuadrada con
-     * castigo. 4 = casilla redonda. 5 = casilla triangular.
+     * @return entero que indica el tipo de casilla.
      */
-    public Casilla(int[] arregloDePuntosEnEjeX, int[] arregloDePuntosEnEjeY, int tipoCasilla) {
-        this.arregloDePuntosEnEjeX = arregloDePuntosEnEjeX;
-        this.arregloDePuntosEnEjeY = arregloDePuntosEnEjeY;
-        this.tipoCasilla = tipoCasilla;
+    public int getTipoDeCasilla() {
+        return tipoDeCasilla;
     }
 
     /**
+     * Establece el atributo tipoDeCasilla al valor del parámetro recibido.
      *
-     * @param puntoEnEjeX coordenada en el eje de las X en donde se va a iniciar
-     * el dibujo de la casilla.
-     * @param puntoEnEjeY coordenada en el eje de las Y en donde se va a iniciar
-     * el dibujo de la casilla.
-     * @param anguloInicial valor en donde se va a iniciar a dibujar el ángulo.
-     * @param anguloFinal valor del ángulo.
-     * @param tipoCasilla identificador del tipo de casilla que se va a crear. 1
-     * = casilla central. 2 = casilla cuadrada. 3 = casilla cuadrada con
-     * castigo. 4 = casilla redonda. 5 = casilla triangular.
+     * @param tipoDeCasilla entero que indica el tipo de casilla.
      */
-    public Casilla(int numeroCasilla, int puntoEnEjeX, int puntoEnEjeY, double anguloInicial, double anguloFinal, int tipoCasilla, int puntoEnEjeXDeFicha, int puntoEnEjeYDeFicha) {
-        this.numeroCasilla = numeroCasilla;
-        this.puntoEnEjeX = puntoEnEjeX;
-        this.puntoEnEjeY = puntoEnEjeY;
-        this.anguloInicial = anguloInicial;
-        this.anguloFinal = anguloFinal;
-        this.tipoCasilla = tipoCasilla;
-        this.puntoEnEjeXDeFicha = puntoEnEjeXDeFicha;
-        this.puntoEnEjeYDeFicha = puntoEnEjeYDeFicha;
+    public void setTipoDeCasilla(int tipoDeCasilla) {
+        this.tipoDeCasilla = tipoDeCasilla;
     }
 
+    /**
+     * Retorna booleano indicando si la casilla tiene ficha.
+     *
+     * @return true si la casilla tiene ficha, false en caso contrario.
+     */
+    public boolean isCasillaTieneFicha() {
+        return casillaTieneFicha;
+    }
+
+    /**
+     * Establece el atributo casillaTieneFicha al valor del parámetro recibido.
+     *
+     * @param casillaTieneFicha booleano que indica si la casilla tiene o no una
+     * ficha.
+     */
+    public void setCasillaTieneFicha(boolean casillaTieneFicha) {
+        this.casillaTieneFicha = casillaTieneFicha;
+    }
     
-    public int getNumeroCasilla() {
-        return numeroCasilla;
-    }
-
-    public void setNumeroCasilla(int numeroCasilla) {
-        this.numeroCasilla = numeroCasilla;
-    }
-
-    public int getPuntoEnEjeX() {
-        return puntoEnEjeX;
-    }
-
-    public void setPuntoEnEjeX(int puntoEnEjeX) {
-        this.puntoEnEjeX = puntoEnEjeX;
-    }
-
-    public int getPuntoEnEjeY() {
-        return puntoEnEjeY;
-    }
-
-    public void setPuntoEnEjeY(int puntoEnEjeY) {
-        this.puntoEnEjeY = puntoEnEjeY;
-    }
-
-    public int[] getArregloDePuntosEnEjeX() {
-        return arregloDePuntosEnEjeX;
-    }
-
-    public void setArregloDePuntosEnEjeX(int[] arregloDePuntosEnEjeX) {
-        this.arregloDePuntosEnEjeX = arregloDePuntosEnEjeX;
-    }
-
-    public int[] getArregloDePuntosEnEjeY() {
-        return arregloDePuntosEnEjeY;
-    }
-
-    public void setArregloDePuntosEnEjeY(int[] arregloDePuntosEnEjeY) {
-        this.arregloDePuntosEnEjeY = arregloDePuntosEnEjeY;
-    }
-
-    public int getPuntoEnEjeXDeFicha() {
-        return puntoEnEjeXDeFicha;
-    }
-
-    public void setPuntoEnEjeXDeFicha(int puntoEnEjeXDeFicha) {
-        this.puntoEnEjeXDeFicha = puntoEnEjeXDeFicha;
-    }
-
-    public int getPuntoEnEjeYDeFicha() {
-        return puntoEnEjeYDeFicha;
-    }
-
-    public void setPuntoEnEjeYDeFicha(int puntoEnEjeYDeFicha) {
-        this.puntoEnEjeYDeFicha = puntoEnEjeYDeFicha;
-    }
-
-    public double getAnguloInicial() {
-        return anguloInicial;
-    }
-
-    public void setAnguloInicial(double anguloInicial) {
-        this.anguloInicial = anguloInicial;
-    }
-
-    public double getAnguloFinal() {
-        return anguloFinal;
-    }
-
-    public void setAnguloFinal(double anguloFinal) {
-        this.anguloFinal = anguloFinal;
-    }
-
-    public int getTipoCasilla() {
-        return tipoCasilla;
-    }
-
-    public void setTipoCasilla(int tipoCasilla) {
-        this.tipoCasilla = tipoCasilla;
-    }
-
 }
