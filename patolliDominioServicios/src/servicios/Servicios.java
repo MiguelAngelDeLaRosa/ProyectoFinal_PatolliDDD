@@ -5,13 +5,17 @@
 
 package servicios;
 
+import java.awt.Color;
+
 /**
  *
  * @author edw_v
  */
 public class Servicios {
 
-    public void crearPartida(){
+    //TODO: INSTANCIA DE SERVICIOS
+    public void crearPartida(int cantidadDeCasillas, int cantidadDeJugadores, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador){
+        
         
     }
     
