@@ -17,7 +17,6 @@ import java.util.List;
 public class AspaGraphic implements Graphic {
 
     private Aspa aspa;
-    private int contadorCasillas;
     private int x;
     private int y;
     private List<Graphic> listaDeCasillas;
@@ -25,9 +24,8 @@ public class AspaGraphic implements Graphic {
     public AspaGraphic() {
     }
 
-    public AspaGraphic(Aspa aspa, int contadorCasillas, int x, int y) {
+    public AspaGraphic(Aspa aspa, int x, int y) {
         this.aspa = aspa;
-        this.contadorCasillas = contadorCasillas;
         this.x = x;
         this.y = y;
         listaDeCasillas = new ArrayList<>();
@@ -80,17 +78,15 @@ public class AspaGraphic implements Graphic {
         //Ciclo para crear las casillas del lado derecho
         for (int i = 0; i < numeroDeCasillasPorAspa - 1; i++) {
             casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-            listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x, y, x + 8, y + 10));
+            listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x, y, x + 8, y + 10));
             y -= 50;
-            contadorCasillas++;
             contadorParaObtenerCasillas++;
         }
 
         casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
         //Creamos la casilla redonda del lado derecho
-        listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x - 50, y, 0, 90, x + 8, y + 10));
+        listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x - 50, y, 0, 90, x + 8, y + 10));
         contadorParaObtenerCasillas++;
-        contadorCasillas++;
         
         //Igualamos nuestras variables auxiliares auxX y auxY a los valores de X y Y para comenzar el siguiente ciclo.
         auxY = y;
@@ -100,9 +96,8 @@ public class AspaGraphic implements Graphic {
 
         casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
         //Creamos la casilla redonda del lado izquierdo
-        listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x - 50, y, 90, 90, x - 37, y + 10));
+        listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x - 50, y, 90, 90, x - 37, y + 10));
         contadorParaObtenerCasillas++;
-        contadorCasillas++;
         
         //Aumentamos en 50 el valor de auxY para continuar con las casillas cuadradas.
         auxY += 50;
@@ -110,10 +105,9 @@ public class AspaGraphic implements Graphic {
         //Ciclo para crear las casillas del lado izquierdo
         for (int j = 0; j < numeroDeCasillasPorAspa - 1; j++) {
             casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-            listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, auxX, auxY, x - 42, auxY + 10));
+            listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), auxX, auxY, x - 42, auxY + 10));
             //Se utiliza el auxY para no modificar la variable y, pues será utilizada para la creación de los triángulos
             auxY += 50;
-            contadorCasillas++;
             contadorParaObtenerCasillas++;
         }
 
@@ -143,35 +137,31 @@ public class AspaGraphic implements Graphic {
         //Ciclo para crear las casillas superiores
         for (int i = 0; i < numeroDeCasillasPorAspa - 1; i++) {
             casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-            listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x, y, x + 8, y + 10));
+            listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x, y, x + 8, y + 10));
             x -= 50;
-            contadorCasillas++;
             contadorParaObtenerCasillas++;
         }
 
         casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-        listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x, y, 90, 90, x + 14, y + 10));
+        listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x, y, 90, 90, x + 14, y + 10));
         contadorParaObtenerCasillas++;
         //Igualamos nuestras variables auxiliares auxX y auxY a los valores de X y Y para comenzar el siguiente ciclo.
 
         auxX = x;
         //A auxY se le sumarán 50 para iniciar a construir las casillas inferiores
         auxY += 50;
-        contadorCasillas++;
 
         casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-        listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x, y, 180, 90, x + 14, auxY + 10));
-        contadorCasillas++;
+        listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x, y, 180, 90, x + 14, auxY + 10));
         contadorParaObtenerCasillas++;
         auxX += 50;
 
         //Ciclo para rear las casillas inferiores
         for (int j = 0; j < numeroDeCasillasPorAspa - 1; j++) {
             casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-            listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, auxX, auxY, auxX + 8, auxY + 10));
+            listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), auxX, auxY, auxX + 8, auxY + 10));
             //Se utiliza el auxX para no modificar la variable x, pues será utilizada para la creación de los triángulos
             auxX += 50;
-            contadorCasillas++;
             contadorParaObtenerCasillas++;
         }
 
@@ -202,17 +192,15 @@ public class AspaGraphic implements Graphic {
         //Ciclo para crear las casillas del lado derecho
         for (int i = 0; i < numeroDeCasillasPorAspa - 1; i++) {
             casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-            listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x, y, x + 8, y + 10));
+            listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x, y, x + 8, y + 10));
             y += 50;
-            contadorCasillas++;
             contadorParaObtenerCasillas++;
         }
 
         casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
         //Creamos la casilla redonda del lado derecho
-        listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x, y - 50, 180, 90, x + 10, y + 10));
+        listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x, y - 50, 180, 90, x + 10, y + 10));
         contadorParaObtenerCasillas++;
-        contadorCasillas++;
         
         //Igualamos nuestras variables auxiliares auxX y auxY a los valores de X y Y para comenzar el siguiente ciclo.
         auxY = y;
@@ -221,9 +209,8 @@ public class AspaGraphic implements Graphic {
 
         casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
         //Creamos la casilla redonda del lado izquierdo
-        listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x, y - 50, 270, 90, auxX + 5, auxY + 10));
+        listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x, y - 50, 270, 90, auxX + 5, auxY + 10));
         contadorParaObtenerCasillas++;
-        contadorCasillas++;
         
         //Disminuimos en 50 el valor de auxY para continuar con las casillas cuadradas.
         auxY -= 50;
@@ -231,10 +218,9 @@ public class AspaGraphic implements Graphic {
         //Ciclo para crear las casillas del lado izquierdo
         for (int j = 0; j < numeroDeCasillasPorAspa - 1; j++) {
             casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-            listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, auxX, auxY, auxX + 8, auxY + 10));
+            listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), auxX, auxY, auxX + 8, auxY + 10));
             //Se utiliza el auxY para no modificar la variable y, pues será utilizada para la creación de los triángulos
             auxY -= 50;
-            contadorCasillas++;
             contadorParaObtenerCasillas++;
         }
 
@@ -264,35 +250,31 @@ public class AspaGraphic implements Graphic {
         //Ciclo para crear las casillas superiores
         for (int i = 0; i < numeroDeCasillasPorAspa - 1; i++) {
             casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-            listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x, y, x + 8, y + 10));
+            listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x, y, x + 8, y + 10));
             x += 50;
-            contadorCasillas++;
             contadorParaObtenerCasillas++;
         }
 
         casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-        listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x - 50, y - 50, 270, 90, x + 8, y + 10));
+        listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x - 50, y - 50, 270, 90, x + 8, y + 10));
         contadorParaObtenerCasillas++;
         //Igualamos nuestras variables auxiliares auxX y auxY a los valores de X y Y para comenzar el siguiente ciclo.
 
         auxX = x;
         //A auxY se le sumarán 50 para iniciar a construir las casillas superiores
         auxY -= 50;
-        contadorCasillas++;
 
         casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-        listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, x - 50, y - 50, 360, 90, x + 8, auxY + 10));
-        contadorCasillas++;
+        listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), x - 50, y - 50, 360, 90, x + 8, auxY + 10));
         contadorParaObtenerCasillas++;
         auxX -= 50;
 
         //Ciclo para rear las casillas inferiores
         for (int j = 0; j < numeroDeCasillasPorAspa - 1; j++) {
             casilla = aspa.getListaDeCasillas().get(contadorParaObtenerCasillas);
-            listaDeCasillas.add(new CasillaGraphic(casilla, contadorCasillas, auxX, auxY, auxX + 8, auxY + 10));
+            listaDeCasillas.add(new CasillaGraphic(casilla, casilla.getNumeroDeCasilla(), auxX, auxY, auxX + 8, auxY + 10));
             //Se utiliza el auxX para no modificar la variable x, pues será utilizada para la creación de los triángulos
             auxX -= 50;
-            contadorCasillas++;
             contadorParaObtenerCasillas++;
         }
 

@@ -21,6 +21,7 @@ public class AggregatePartida implements IAggregateRoot {
     private List<Jugador> listaDeJugadores;
     private Tablero tablero;
     private boolean laPartidaHaIniciado;
+    private int montoPorApuesta;
 
     /**
      * Constructor por omisión.
@@ -41,7 +42,8 @@ public class AggregatePartida implements IAggregateRoot {
      * @param laPartidaHaIniciado booleano a asignar al atributo
      * laPartidaHaIniciado de la clase.
      */
-    public AggregatePartida(int idPartida, Tablero tablero, boolean laPartidaHaIniciado) {
+    public AggregatePartida(int idPartida, Tablero tablero, boolean laPartidaHaIniciado, int montoPorApuesta) {
+        this.montoPorApuesta = montoPorApuesta;
         this.idPartida = idPartida;
         this.tablero = tablero;
         this.laPartidaHaIniciado = laPartidaHaIniciado;
@@ -61,7 +63,8 @@ public class AggregatePartida implements IAggregateRoot {
      * @param laPartidaHaIniciado booleano a asignar al atributo
      * laPartidaHaIniciado de la clase.
      */
-    public AggregatePartida(int idPartida, List<Jugador> listaDeJugadores, Tablero tablero, boolean laPartidaHaIniciado) {
+    public AggregatePartida(int idPartida, List<Jugador> listaDeJugadores, Tablero tablero, boolean laPartidaHaIniciado, int montoPorApuesta) {
+        this.montoPorApuesta = montoPorApuesta;
         this.idPartida = idPartida;
         this.listaDeJugadores = listaDeJugadores;
         this.tablero = tablero;

@@ -34,7 +34,7 @@ public class Jugador {
         this.colorDeLasFichas = colorDeLasFichas;
         this.puntosParaApostar = puntosParaApostar;
         this.colaDeFichas = new LinkedList<>();
-        llenarColaDeFichas();
+//        llenarColaDeFichas();
     }
 
     public int getIdJugador() {
@@ -93,15 +93,15 @@ public class Jugador {
         this.colaDeFichas = colaDeFichas;
     }
 
-    public void llenarColaDeFichas(){
-        int contadorParaAsignarId = 1;
-        
-        for (int i = 0; i < 5; i++) {
-            Ficha ficha = new Ficha(contadorParaAsignarId, this.idJugador, this.colorDeLasFichas, true, false);
-            colaDeFichas.offer(ficha);
-            contadorParaAsignarId ++;
-        }
-    }
+//    public void llenarColaDeFichas(){
+//        int contadorParaAsignarId = 1;
+//        
+//        for (int i = 0; i < 5; i++) {
+//            Ficha ficha = new Ficha(contadorParaAsignarId, this.idJugador, this.colorDeLasFichas, true, false);
+//            colaDeFichas.offer(ficha);
+//            contadorParaAsignarId ++;
+//        }
+//    }
     
     
 

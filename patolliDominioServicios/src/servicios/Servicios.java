@@ -5,18 +5,27 @@
 
 package servicios;
 
+import dominio.AggregatePartida;
+import dominio.Jugador;
+import dominio.Tablero;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
  * @author edw_v
  */
 public class Servicios {
-
-    //TODO: INSTANCIA DE SERVICIOS
-    public void crearPartida(int cantidadDeCasillas, int cantidadDeJugadores, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador){
-        
-        
+    
+    private AggregatePartida partida;
+    private final int idDePartida = 1001;
+    private List<Jugador> listaDeJugadores;
+    
+    public void crearPartida(int numeroDeCasillasPorAspa, int cantidadDeJugadores, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador){
+        listaDeJugadores = new ArrayList<>();
+        Tablero tablero = new Tablero(numeroDeCasillasPorAspa);
     }
     
     public void unirseAPartida(){
@@ -33,5 +42,9 @@ public class Servicios {
     
     public void ejercerTurno(int valorObtenidoAlLanzarCañas){
         
+    }
+    
+    private void asignarFichaACasilla(){
+
     }
 }

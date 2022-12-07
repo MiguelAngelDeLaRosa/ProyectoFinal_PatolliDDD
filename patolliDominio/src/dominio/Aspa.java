@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class Aspa {
 
+    private int asignadorDeNumeroDeCasilla;
     private int numeroDeCasillasPorAspa;
     private String tipoDeAspa;
     private List<Casilla> listaDeCasillas;
@@ -33,7 +34,8 @@ public class Aspa {
      * aspa.
      * @param tipoDeAspa string que indica el tipo de aspa que será.
      */
-    public Aspa(int numeroDeCasillasPorAspa, String tipoDeAspa) {
+    public Aspa(int asignadorDeNumeroDeCasilla, int numeroDeCasillasPorAspa, String tipoDeAspa) {
+        this.asignadorDeNumeroDeCasilla = asignadorDeNumeroDeCasilla;
         this.numeroDeCasillasPorAspa = numeroDeCasillasPorAspa;
         this.tipoDeAspa = tipoDeAspa;
         this.listaDeCasillas = new ArrayList<>();
@@ -49,24 +51,28 @@ public class Aspa {
         for (int i = 0; i < numeroDeCasillasPorAspa - 1; i++) {
             //Si las casillas son las últimas dos, las cuales tendrán castigo.
             if (i == numeroDeCasillasPorAspa - 2 || i == numeroDeCasillasPorAspa - 3) {
-                listaDeCasillas.add(new Casilla(3, false));
+                listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 3, false));
             } else {
-                listaDeCasillas.add(new Casilla(2, false));
+                listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 2, false));
             }
+            asignadorDeNumeroDeCasilla ++;
         }
 
         //Se crean las dos casillas circulares.
-        listaDeCasillas.add(new Casilla(4, false));
-        listaDeCasillas.add(new Casilla(4, false));
-
+        listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 4, false));
+        asignadorDeNumeroDeCasilla ++;
+        listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 4, false));
+        asignadorDeNumeroDeCasilla ++;
+        
         //Ciclo para crear la segunda hilera de casillas.
         for (int j = 0; j < numeroDeCasillasPorAspa - 1; j++) {
             //Si las casillas son las últimas dos, las cuales tendrán castigo.
             if (j == 0 || j == 1) {
-                listaDeCasillas.add(new Casilla(3, false));
+                listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 3, false));
             } else {
-                listaDeCasillas.add(new Casilla(2, false));
+                listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 2, false));
             }
+            asignadorDeNumeroDeCasilla ++;
         }
 
         //Se agregan las casillas triangulares

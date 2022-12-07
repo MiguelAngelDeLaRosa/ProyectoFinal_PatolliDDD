@@ -12,6 +12,7 @@ import java.awt.Color;
  */
 public class Casilla {
 
+    private int numeroDeCasilla;
     private int tipoDeCasilla;
     private boolean casillaTieneFicha;
 
@@ -32,9 +33,18 @@ public class Casilla {
      * @param tipoDeCasilla entero que indica el tipo de casilla.
      * @param casillaTieneFicha booleano que indica si la casilla tiene ficha.
      */
-    public Casilla(int tipoDeCasilla, boolean casillaTieneFicha) {
+    public Casilla(int numeroDeCasilla, int tipoDeCasilla, boolean casillaTieneFicha) {
+        this.numeroDeCasilla = numeroDeCasilla;
         this.tipoDeCasilla = tipoDeCasilla;
         this.casillaTieneFicha = casillaTieneFicha;
+    }
+
+    public int getNumeroDeCasilla() {
+        return numeroDeCasilla;
+    }
+
+    public void setNumeroDeCasilla(int numeroDeCasilla) {
+        this.numeroDeCasilla = numeroDeCasilla;
     }
 
     /**
