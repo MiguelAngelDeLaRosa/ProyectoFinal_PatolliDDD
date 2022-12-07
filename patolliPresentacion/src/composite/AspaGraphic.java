@@ -20,6 +20,7 @@ public class AspaGraphic implements Graphic {
     private int x;
     private int y;
     private List<Graphic> listaDeCasillas;
+    private Graphics g;
 
     public AspaGraphic() {
     }
@@ -29,6 +30,7 @@ public class AspaGraphic implements Graphic {
         this.x = x;
         this.y = y;
         listaDeCasillas = new ArrayList<>();
+        llenarListaDeCasillas();
     }
 
     public List<Graphic> getListaDeCasillas() {
@@ -51,23 +53,27 @@ public class AspaGraphic implements Graphic {
      */
     @Override
     public void dibujar(Graphics g) {
+        dibujarListaDeCasillas(g);
+    }
+    
+    public void llenarListaDeCasillas(){
         switch (aspa.getTipoDeAspa()) {
             case ("superior"):
-                llenarListaDeCasillasDeAspaSuperior(g);
+                llenarListaDeCasillasDeAspaSuperior();
                 break;
             case ("inferior"):
-                llenarListaDeCasillasDeAspaInferior(g);
+                llenarListaDeCasillasDeAspaInferior();
                 break;
             case ("derecha"):
-                llenarListaDeCasillasDeAspaDerecha(g);
+                llenarListaDeCasillasDeAspaDerecha();
                 break;
             case ("izquierda"):
-                llenarListaDeCasillasDeAspaIzquierda(g);
+                llenarListaDeCasillasDeAspaIzquierda();
                 break;
         }
     }
 
-    public void llenarListaDeCasillasDeAspaSuperior(Graphics g) {
+    public void llenarListaDeCasillasDeAspaSuperior() {
 
         int numeroDeCasillasPorAspa = aspa.getNumeroDeCasillasPorAspa();
         int auxX = x;
@@ -123,11 +129,9 @@ public class AspaGraphic implements Graphic {
         int[] yT2 = {y + 101, y + 130, y + 70};
         listaDeCasillas.add(new CasillaGraphic(casilla, xT2, yT2));
 
-        //Llamada al método de impresión.
-        imprimirListaDeCasillas(g);
     }
 
-    public void llenarListaDeCasillasDeAspaIzquierda(Graphics g) {
+    public void llenarListaDeCasillasDeAspaIzquierda() {
         int numeroDeCasillasPorAspa = aspa.getNumeroDeCasillasPorAspa();
         int auxX = x;
         int auxY = y;
@@ -177,11 +181,9 @@ public class AspaGraphic implements Graphic {
         int[] yT2 = {y + 100, y + 50, y + 100};
         listaDeCasillas.add(new CasillaGraphic(casilla, xT2, yT2));
         
-        //Llamada al método de impresión.
-        imprimirListaDeCasillas(g);
     }
     
-    public void llenarListaDeCasillasDeAspaInferior(Graphics g) {
+    public void llenarListaDeCasillasDeAspaInferior() {
 
         int numeroDeCasillasPorAspa = aspa.getNumeroDeCasillasPorAspa();
         int auxX = x;
@@ -236,11 +238,9 @@ public class AspaGraphic implements Graphic {
         int[] yT2 = {y - 50, y - 80, y - 20};
         listaDeCasillas.add(new CasillaGraphic(casilla, xT2, yT2));
 
-        //Llamada al método de impresión.
-        imprimirListaDeCasillas(g);
     }
     
-    public void llenarListaDeCasillasDeAspaDerecha(Graphics g) {
+    public void llenarListaDeCasillasDeAspaDerecha() {
         int numeroDeCasillasPorAspa = aspa.getNumeroDeCasillasPorAspa();
         int auxX = x;
         int auxY = y;
@@ -290,8 +290,6 @@ public class AspaGraphic implements Graphic {
         int[] yT2 = {y + 50, y, y + 50};
         listaDeCasillas.add(new CasillaGraphic(casilla, xT2, yT2));
         
-        //Llamada al método de impresión.
-        imprimirListaDeCasillas(g);
     }
 
     /**
@@ -300,7 +298,7 @@ public class AspaGraphic implements Graphic {
      *
      * @param g parámetro de tipo Graphics utilizado para pintar las casillas.
      */
-    public void imprimirListaDeCasillas(Graphics g) {
+    public void dibujarListaDeCasillas(Graphics g) {
         for (Graphic c : listaDeCasillas) {
             c.dibujar(g);
         }

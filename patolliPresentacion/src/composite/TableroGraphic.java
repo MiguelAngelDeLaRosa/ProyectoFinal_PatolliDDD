@@ -33,6 +33,23 @@ public class TableroGraphic implements Graphic {
         llenarListaDeGraficosDelTablero();
     }
 
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
+
+    public List<Graphic> getListaDeGraficosDelTablero() {
+        return listaDeGraficosDelTablero;
+    }
+
+    public void setListaDeGraficosDelTablero(List<Graphic> listaDeGraficosDelTablero) {
+        this.listaDeGraficosDelTablero = listaDeGraficosDelTablero;
+    }
+
+    
     /**
      * Utiliza la lista de aspas y el centro que se encuentran dentro del objeto
      * de tipo Tablero para crear una lista de tipo Graphic en donde se

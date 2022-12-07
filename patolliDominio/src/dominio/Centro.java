@@ -46,7 +46,7 @@ public class Centro {
     public void llenarListaDeCasillasCentrales() {
         listaDeCasillasCentrales.add(new Casilla(idCasillaSuperiorDerecha, 1, false));
         listaDeCasillasCentrales.add(new Casilla(idCasillaSuperiorIzquierda, 1, false));
-        listaDeCasillasCentrales.add(new Casilla(idCasillaInferiorDerecha, 1, false));
+        listaDeCasillasCentrales.add(new Casilla(idCasillaInferiorIzquierda, 1, false));
         listaDeCasillasCentrales.add(new Casilla(idCasillaInferiorDerecha, 1, false));
     }
 

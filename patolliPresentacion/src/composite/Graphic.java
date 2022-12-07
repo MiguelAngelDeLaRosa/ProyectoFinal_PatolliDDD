@@ -5,6 +5,7 @@
 package composite;
 
 import java.awt.Graphics;
+import java.util.List;
 
 /**
  *

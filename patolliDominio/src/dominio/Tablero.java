@@ -32,6 +32,7 @@ public class Tablero {
         this.numeroDeCasillasPorAspa = numeroDeCasillasPorAspa;
         listaDeAspas = new ArrayList<>();
         centroDelTablero = new Centro(this.numeroDeCasillasPorAspa);
+        asignarContadores();
         listaDeAspas.add(new Aspa(contadorSuperior, numeroDeCasillasPorAspa, "superior"));
         listaDeAspas.add(new Aspa(contadorIzquierdo, numeroDeCasillasPorAspa, "izquierda"));
         listaDeAspas.add(new Aspa(contadorInferior, numeroDeCasillasPorAspa, "inferior"));
