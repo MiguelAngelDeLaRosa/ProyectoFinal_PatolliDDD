@@ -18,6 +18,10 @@ public class TableroGraphic implements Graphic {
 
     private Tablero tablero;
     private List<Graphic> listaDeGraficosDelTablero;
+    private int contadorSuperior;
+    private int contadorInferior;
+    private int contadorIzquierdo;
+    private int contadorDerecho;
 
     /**
      * Constructor que inicializa el atributo tablero de la clase al valor del
@@ -38,12 +42,43 @@ public class TableroGraphic implements Graphic {
      * guardarán los gráficos del tablero.
      */
     public void llenarListaDeGraficosDelTablero() {
+        asignarValorAContadores();
         CentroGraphic centroDelTablero = new CentroGraphic(tablero.getCentroDelTablero());
         listaDeGraficosDelTablero.add(centroDelTablero);
-        for (Aspa aspa : tablero.getListaDeAspas()) {
-            AspaGraphic aspaGraphic = new AspaGraphic(aspa);
-            listaDeGraficosDelTablero.add(aspaGraphic);
+        
+        listaDeGraficosDelTablero.add(new AspaGraphic(tablero.getListaDeAspas().get(0), contadorSuperior, 480, 360));
+        listaDeGraficosDelTablero.add(new AspaGraphic(tablero.getListaDeAspas().get(1), contadorIzquierdo, 380, 410));
+        listaDeGraficosDelTablero.add(new AspaGraphic(tablero.getListaDeAspas().get(2), contadorInferior, 430, 510));
+        listaDeGraficosDelTablero.add(new AspaGraphic(tablero.getListaDeAspas().get(3), contadorDerecho, 530, 460));
+    }
+
+    public void asignarValorAContadores() {
+        int numeroDeCasillasPorAspa = tablero.getNumeroDeCasillasPorAspa();
+
+        switch (numeroDeCasillasPorAspa) {
+
+            case 5:
+                this.contadorSuperior = 2;
+                this.contadorIzquierdo = 13;
+                this.contadorInferior = 24;
+                this.contadorDerecho = 35;
+                break;
+
+            case 6:
+                this.contadorSuperior = 2;
+                this.contadorIzquierdo = 15;
+                this.contadorInferior = 28;
+                this.contadorDerecho = 41;
+                break;
+
+            case 7:
+                this.contadorSuperior = 2;
+                this.contadorIzquierdo = 17;
+                this.contadorInferior = 32;
+                this.contadorDerecho = 47;
+                break;
         }
+
     }
 
     /**

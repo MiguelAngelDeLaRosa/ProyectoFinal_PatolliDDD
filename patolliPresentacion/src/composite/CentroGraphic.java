@@ -17,7 +17,11 @@ import java.util.List;
 public class CentroGraphic implements Graphic {
 
     private Centro centro;
-    private List<Graphic> listaDeCasillasGraphic;
+    private List<Graphic> listaDeCasillasCentrales;
+    private int casillaSuperiorDerecha;
+    private int casillaSuperiorIzquierda;
+    private int casillaInferiorIzquierda;
+    private int casillaInferiorDerecha;
 
     /**
      * Constructor que inicializa el atributo centro de la clase al valor del
@@ -28,7 +32,8 @@ public class CentroGraphic implements Graphic {
      */
     public CentroGraphic(Centro centro) {
         this.centro = centro;
-        listaDeCasillasGraphic = new ArrayList<>();
+        listaDeCasillasCentrales = new ArrayList<>();
+        asignarValoresDeIdDeCasillasCentrales();
         llenarListaDeCasillasGraphic();
     }
 
@@ -37,12 +42,40 @@ public class CentroGraphic implements Graphic {
      * Graphic en donde se guardarán CasillasGraphic.
      */
     public void llenarListaDeCasillasGraphic() {
-        for (Casilla c : centro.getListaDeCasillasCentrales()) {
-            CasillaGraphic casillaGraphic = new CasillaGraphic(c);
-            listaDeCasillasGraphic.add(casillaGraphic);
-        }
+        List<Casilla> listaDeCasillas = centro.getListaDeCasillasCentrales();
+        listaDeCasillasCentrales.add(new CasillaGraphic(listaDeCasillas.get(0), casillaSuperiorDerecha, 480, 410, 488, 420));
+        listaDeCasillasCentrales.add(new CasillaGraphic(listaDeCasillas.get(1),casillaSuperiorIzquierda, 430, 410, 438, 420));
+        listaDeCasillasCentrales.add(new CasillaGraphic(listaDeCasillas.get(2),casillaInferiorIzquierda, 430, 460, 438, 470));
+        listaDeCasillasCentrales.add(new CasillaGraphic(listaDeCasillas.get(3),casillaInferiorDerecha, 480, 460, 488, 470));
     }
 
+    public void asignarValoresDeIdDeCasillasCentrales() {
+        int numeroDeCasillasPorAspa = centro.getNumeroDeCasillasPorAspa();
+        
+        switch (numeroDeCasillasPorAspa) {
+            case 5:
+                this.casillaSuperiorDerecha = 1;
+                this.casillaSuperiorIzquierda = 12;
+                this.casillaInferiorIzquierda = 23;
+                this.casillaInferiorDerecha = 34;
+                break;
+
+            case 6:
+                this.casillaSuperiorDerecha = 1;
+                this.casillaSuperiorIzquierda = 14;
+                this.casillaInferiorIzquierda = 27;
+                this.casillaInferiorDerecha = 40;
+                break;
+
+            case 7:
+                this.casillaSuperiorDerecha = 1;
+                this.casillaSuperiorIzquierda = 16;
+                this.casillaInferiorIzquierda = 31;
+                this.casillaInferiorDerecha = 46;
+                break;
+        }
+    }
+    
     /**
      * Retorna el objeto de tipo centro almacenado en el atributo de la clase.
      *
@@ -67,7 +100,7 @@ public class CentroGraphic implements Graphic {
      * @return una lista de tipo Graphic.
      */
     public List<Graphic> getListaDeCasillasGraphic() {
-        return listaDeCasillasGraphic;
+        return listaDeCasillasCentrales;
     }
 
     /**
@@ -75,8 +108,8 @@ public class CentroGraphic implements Graphic {
      *
      * @param listaDeCasillasGraphic parámetro una lista de tipo Graphic.
      */
-    public void setListaDeCasillasGraphic(List<Graphic> listaDeCasillasGraphic) {
-        this.listaDeCasillasGraphic = listaDeCasillasGraphic;
+    public void setListaDeCasillasGraphic(List<Graphic> listaDeCasillasCentrales) {
+        this.listaDeCasillasCentrales = listaDeCasillasCentrales;
     }
 
     /**
@@ -97,7 +130,9 @@ public class CentroGraphic implements Graphic {
      */
     @Override
     public void dibujar(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Graphic casilla: listaDeCasillasCentrales) {
+            casilla.dibujar(g);
+        }
     }
 
 }

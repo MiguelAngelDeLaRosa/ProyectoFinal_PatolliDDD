@@ -18,93 +18,224 @@ import java.awt.geom.Arc2D;
 public class CasillaGraphic implements Graphic {
 
     private Casilla casilla;
+    private int numeroDeCasilla;
+
+    //Coordenadas de los ejes en donde se va a dibujar la casilla.
+    private int puntoEnEjeX;
+    private int puntoEnEjeY;
+
+    //Atributos utilizados para dibujar casillas triangulares.
+    private int[] arregloDePuntosEnEjeX;
+    private int[] arregloDePuntosEnEjeY;
+
+    //Atributos que guardan las coordenadas de dibujado de las fichas en la casilla.
+    private int puntoEnEjeXDeFicha;
+    private int puntoEnEjeYDeFicha;
+
+    //Atributos utilizados para dibujar casillas circulares.
+    private double anguloInicial;
+    private double anguloFinal;
 
     /**
-     * Método constructor que recibe una casilla como parámetro y la iguala al
-     * valor de su atributo.
+     * Constructor utilizado para crear una casilla cuadrada.
      *
-     * @param casilla parámetro con un objeto de tipo casilla.
+     * @param casilla contiene una casilla de dominio.
+     * @param numeroDeCasilla número que identifica el número de la casilla en
+     * el tablero.
+     * @param puntoEnEjeX coordenada del eje X en donde se comenzará a dibujar
+     * la casilla.
+     * @param puntoEnEjeY coordenada del eje Y en donde se comenzará a dibujar
+     * la casilla.
+     * @param puntoEnEjeXDeFicha coordenada del eje X en donde se comenzará a
+     * dibujar la ficha dentro de esta casilla.
+     * @param puntoEnEjeYDeFicha coordenada del eje Y en donde se comenzará a
+     * dibujar la ficha dentro de esta casilla.
      */
-    public CasillaGraphic(Casilla casilla) {
+    public CasillaGraphic(Casilla casilla, int numeroDeCasilla, int puntoEnEjeX, int puntoEnEjeY, int puntoEnEjeXDeFicha, int puntoEnEjeYDeFicha) {
         this.casilla = casilla;
+        this.numeroDeCasilla = numeroDeCasilla;
+        this.puntoEnEjeX = puntoEnEjeX;
+        this.puntoEnEjeY = puntoEnEjeY;
+        this.arregloDePuntosEnEjeX = null;
+        this.arregloDePuntosEnEjeY = null;
+        this.puntoEnEjeXDeFicha = puntoEnEjeXDeFicha;
+        this.puntoEnEjeYDeFicha = puntoEnEjeYDeFicha;
     }
 
     /**
-     * Retorna el objeto de tipo casilla almacenado en el atributo de la clase.
+     * Constructor utilizado para crear una casilla de tipo triangular.
      *
-     * @return objeto de tipo casilla.
+     * @param arregloDePuntosEnEjeX arreglo de puntos en el eje de las X para el
+     * dibujado de las casillas triangulares.
+     * @param arregloDePuntosEnEjeY arreglo de puntos en el eje de las Y para el
+     * dibujado de las casillas triangulares.
      */
-    public Casilla getCasilla() {
-        return casilla;
-    }
-
-    /**
-     * Establece el atributo de la clase al valor del parámetro recibido.
-     *
-     * @param casilla parámetro con un objeto de tipo casilla.
-     */
-    public void setCasilla(Casilla casilla) {
+    public CasillaGraphic(Casilla casilla, int[] arregloDePuntosEnEjeX, int[] arregloDePuntosEnEjeY) {
         this.casilla = casilla;
+        this.arregloDePuntosEnEjeX = arregloDePuntosEnEjeX;
+        this.arregloDePuntosEnEjeY = arregloDePuntosEnEjeY;
     }
 
     /**
-     * Método que llama a un método en específico para dibujar un tipo de
-     * casilla definido por la variable tipoDeCasilla.
+     * Constructor utilizado para crear una casilla de tipo circular.
      *
-     * @param g parámetro que permite el dibujo de la casilla.
+     * @param casilla contiene una casilla de dominio.
+     * @param numeroDeCasilla número que identifica el número de la casilla en
+     * el tablero.
+     * @param puntoEnEjeX coordenada del eje X en donde se comenzará a dibujar
+     * la casilla.
+     * @param puntoEnEjeY coordenada del eje Y en donde se comenzará a dibujar
+     * la casilla.
+     * @param anguloInicial ángulo inicial para el dibujado de la casilla
+     * circular.
+     * @param anguloFinal ángulo en donde debe terminar el dibujado de la
+     * casilla circular.
+     * @param puntoEnEjeXDeFicha coordenada del eje X en donde se comenzará a
+     * dibujar la ficha dentro de esta casilla.
+     * @param puntoEnEjeYDeFicha coordenada del eje Y en donde se comenzará a
+     * dibujar la ficha dentro de esta casilla.
      */
+    public CasillaGraphic(Casilla casilla, int numeroDeCasilla, int puntoEnEjeX, int puntoEnEjeY, double anguloInicial, double anguloFinal, int puntoEnEjeXDeFicha, int puntoEnEjeYDeFicha) {
+        this.casilla = casilla;
+        this.numeroDeCasilla = numeroDeCasilla;
+        this.puntoEnEjeX = puntoEnEjeX;
+        this.puntoEnEjeY = puntoEnEjeY;
+        this.anguloInicial = anguloInicial;
+        this.anguloFinal = anguloFinal;
+        this.puntoEnEjeXDeFicha = puntoEnEjeXDeFicha;
+        this.puntoEnEjeYDeFicha = puntoEnEjeYDeFicha;
+    }
+
     @Override
     public void dibujar(Graphics g) {
-        int tipoDeCasilla = casilla.getTipoCasilla();
-
-        if (tipoDeCasilla == 1 || tipoDeCasilla == 2 || tipoDeCasilla == 3) {
-            dibujarCasillaCuadrada(g);
+        if (casilla.getTipoDeCasilla() == 1 || casilla.getTipoDeCasilla() == 2 || casilla.getTipoDeCasilla() == 3) {
+            casillaCuadrada(g);
         }
-        if (tipoDeCasilla == 4) {
-            dibujarCasillaCircular(g);
+        if (casilla.getTipoDeCasilla() == 4) {
+            casillaCircular(g);
         }
-        if (tipoDeCasilla == 5) {
-            dibujarCasillaTriangular(g);
+        if (casilla.getTipoDeCasilla() == 5) {
+            casillaTriangular(g);
         }
     }
 
     /**
      * Método para dibujar una casilla cuadrada
      *
-     * @param g instancia de tipo Graphics para poder dibujar una casilla.
+     * @param g instancia de tipo Graphics para poder dibujar en el JPanel.
      */
-    public void dibujarCasillaCuadrada(Graphics g) {
+    public void casillaCuadrada(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.white);
-        g2.fillRect(casilla.getPuntoEnEjeX(), casilla.getPuntoEnEjeY(), 50, 50);
+        g2.fillRect(puntoEnEjeX, puntoEnEjeY, 50, 50);
         g2.setStroke(new BasicStroke(2.0f));
         g2.setColor(Color.black);
-        g2.drawRect(casilla.getPuntoEnEjeX(), casilla.getPuntoEnEjeY(), 50, 50);
-    }
-
-    /**
-     * Método para dibujar una casilla circular
-     *
-     * @param g instancia de tipo Graphics para poder dibujar una casilla.
-     */
-    public void dibujarCasillaCircular(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(2.0f));
-        g2.setColor(new Color(188, 156, 37));
-        g2.fill(new Arc2D.Double(casilla.getPuntoEnEjeX(), casilla.getPuntoEnEjeY(), 100, 100, casilla.getAnguloInicial(), casilla.getAnguloFinal(), Arc2D.PIE));
-        g2.setColor(Color.black);
-        g2.draw(new Arc2D.Double(casilla.getPuntoEnEjeX(), casilla.getPuntoEnEjeY(), 100, 100, casilla.getAnguloInicial(), casilla.getAnguloFinal(), Arc2D.PIE));
+        g2.drawRect(puntoEnEjeX, puntoEnEjeY, 50, 50);
     }
 
     /**
      * Método para dibujar una casilla triangular
      *
-     * @param g instancia de tipo Graphics para poder dibujar una casilla.
+     * @param g instancia de tipo Graphics para poder dibujar en el JPanel.
      */
-    public void dibujarCasillaTriangular(Graphics g) {
+    public void casillaTriangular(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.RED);
-        g2.fillPolygon(casilla.getArregloDePuntosEnEjeX(), casilla.getArregloDePuntosEnEjeY(), 3);
+        g2.fillPolygon(arregloDePuntosEnEjeX, arregloDePuntosEnEjeY, 3);
+
     }
 
+    /**
+     * Método para dibujar una casilla circular
+     *
+     * @param g instancia de tipo Graphics para poder dibujar en el JPanel.
+     */
+    public void casillaCircular(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(2.0f));
+        g2.setColor(new Color(188, 156, 37));
+        g2.fill(new Arc2D.Double(puntoEnEjeX, puntoEnEjeY, 100, 100, anguloInicial, anguloFinal, Arc2D.PIE));
+        g2.setColor(Color.black);
+        g2.draw(new Arc2D.Double(puntoEnEjeX, puntoEnEjeY, 100, 100, anguloInicial, anguloFinal, Arc2D.PIE));
+    }
+
+    public Casilla getCasilla() {
+        return casilla;
+    }
+
+    public void setCasilla(Casilla casilla) {
+        this.casilla = casilla;
+    }
+
+    public int getNumeroDeCasilla() {
+        return numeroDeCasilla;
+    }
+
+    public void setNumeroDeCasilla(int numeroDeCasilla) {
+        this.numeroDeCasilla = numeroDeCasilla;
+    }
+
+    public int getPuntoEnEjeX() {
+        return puntoEnEjeX;
+    }
+
+    public void setPuntoEnEjeX(int puntoEnEjeX) {
+        this.puntoEnEjeX = puntoEnEjeX;
+    }
+
+    public int getPuntoEnEjeY() {
+        return puntoEnEjeY;
+    }
+
+    public void setPuntoEnEjeY(int puntoEnEjeY) {
+        this.puntoEnEjeY = puntoEnEjeY;
+    }
+
+    public int[] getArregloDePuntosEnEjeX() {
+        return arregloDePuntosEnEjeX;
+    }
+
+    public void setArregloDePuntosEnEjeX(int[] arregloDePuntosEnEjeX) {
+        this.arregloDePuntosEnEjeX = arregloDePuntosEnEjeX;
+    }
+
+    public int[] getArregloDePuntosEnEjeY() {
+        return arregloDePuntosEnEjeY;
+    }
+
+    public void setArregloDePuntosEnEjeY(int[] arregloDePuntosEnEjeY) {
+        this.arregloDePuntosEnEjeY = arregloDePuntosEnEjeY;
+    }
+
+    public int getPuntoEnEjeXDeFicha() {
+        return puntoEnEjeXDeFicha;
+    }
+
+    public void setPuntoEnEjeXDeFicha(int puntoEnEjeXDeFicha) {
+        this.puntoEnEjeXDeFicha = puntoEnEjeXDeFicha;
+    }
+
+    public int getPuntoEnEjeYDeFicha() {
+        return puntoEnEjeYDeFicha;
+    }
+
+    public void setPuntoEnEjeYDeFicha(int puntoEnEjeYDeFicha) {
+        this.puntoEnEjeYDeFicha = puntoEnEjeYDeFicha;
+    }
+
+    public double getAnguloInicial() {
+        return anguloInicial;
+    }
+
+    public void setAnguloInicial(double anguloInicial) {
+        this.anguloInicial = anguloInicial;
+    }
+
+    public double getAnguloFinal() {
+        return anguloFinal;
+    }
+
+    public void setAnguloFinal(double anguloFinal) {
+        this.anguloFinal = anguloFinal;
+    }
 }
