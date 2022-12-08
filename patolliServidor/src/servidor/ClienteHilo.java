@@ -5,6 +5,7 @@
 package servidor;
 
 import java.io.DataInputStream;
+import java.io.IOException;
 import java.net.Socket;
 import java.util.Observable;
 
@@ -15,6 +16,7 @@ import java.util.Observable;
 public class ClienteHilo extends Observable implements Runnable  {
     
     private Socket socket;
+    private String nombreDeUsuario;
     private DataInputStream in;
 
     public ClienteHilo(Socket socket) {
@@ -32,9 +34,18 @@ public class ClienteHilo extends Observable implements Runnable  {
                 mensaje = in.readUTF();
             }
             
-        } catch (Exception e) {
+        } catch (IOException e) {
+            cerrarTodo(socket);
         }
     }
     
-    
+    public void cerrarTodo(Socket socket){
+        try {
+            if (socket != null){
+                socket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -5,6 +5,7 @@
 package servidor;
 
 import com.sun.corba.se.spi.activation.Server;
+import dominio.AggregatePartida;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -18,9 +19,15 @@ import java.util.logging.Logger;
 public class Servidor {
 
     private ServerSocket socketServidor;
-
-    public Servidor() {
+    private AggregatePartida partida;
+    
+    /**
+     * Constructor que crea el servidor
+     * @param partida 
+     */
+    public Servidor(AggregatePartida partida) {
         try {
+            this.partida = partida;
             socketServidor = new ServerSocket(6000);
         } catch (IOException e) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, e);
@@ -28,6 +35,9 @@ public class Servidor {
         }
     }
     
+    /**
+     * Inicia el servidor para escuhar peticiones de los clientes
+     */
     public void iniciarServidor(){
         try {
             while (!socketServidor.isClosed()){
@@ -36,10 +46,14 @@ public class Servidor {
                 Thread thread = new Thread(clienteHilo);
                 thread.run();
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
+            cerrarServerSocket();
         }
     }
-
+    
+    /**
+     * Cierra el servidor
+     */
     private void cerrarServerSocket() {
         try {
             if (socketServidor != null) {
@@ -48,11 +62,6 @@ public class Servidor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    
-    public static void main(String[] args) {
-        Servidor s = new Servidor();
-        s.iniciarServidor();
     }
 
 }

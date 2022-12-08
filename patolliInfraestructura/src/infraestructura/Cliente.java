@@ -21,7 +21,10 @@ public class Cliente {
         this.nombreDeUsuario = nombreDeUsuario;
         this.ipDelServidor = ipDelServidor;
     }
-
+    
+    /**
+     * Se conecta con el servidor
+     */
     public void iniciar() {
         try {
             socket = new Socket(this.ipDelServidor, 6000);
@@ -30,9 +33,24 @@ public class Cliente {
         }
     }
     
-    public static void main(String[] args) {
-        Cliente c = new Cliente("Miguel", "localhost");
-        c.iniciar();
+    /**
+     * Ejerce turno
+     */
+    public void ejercerTurno(){
+        
     }
-
+    
+    /**
+     * El cliente se desconecta del servidor
+     * @param socket 
+     */
+    public void salirDePartida(Socket socket){
+        try {
+            if (socket != null){
+                socket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
