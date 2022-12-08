@@ -5,7 +5,9 @@
 
 package aplicacion;
 
+import dominio.Tablero;
 import java.awt.Color;
+import servicios.Servicios;
 
 /**
  *
@@ -13,7 +15,16 @@ import java.awt.Color;
  */
 public class CasosDeUso {
 
-    //TODO: INSTANCIA DE SERVICIOS
+    private int idCasosDeUso;
+    private Servicios servicios;
+    private final int idServicio = 2001;
+
+    public CasosDeUso(int idCasosDeUso) {
+        this.idCasosDeUso = idCasosDeUso;
+        servicios = new Servicios(idServicio);
+    }
+    
+    
     public void crearPartida(int cantidadDeCasillas, int cantidadDeJugadores, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador){
         
         
@@ -33,5 +44,9 @@ public class CasosDeUso {
     
     public void ejercerTurno(int valorObtenidoAlLanzarCañas){
         
+    }
+    
+    public Tablero enviarTableroAPresentacion(){
+        return servicios.enviarTableroAAplicacion();
     }
 }

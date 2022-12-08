@@ -1,5 +1,6 @@
 package guis;
 
+import aplicacion.CasosDeUso;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -11,11 +12,15 @@ import javax.swing.border.EmptyBorder;
  */
 public class FrmPrincipal extends javax.swing.JFrame {
 
+    private CasosDeUso casosDeUso;
+    private final int idCasosDeUso = 1001;
+
     /**
      * Creates new form FrmPrincipal1
      */
     public FrmPrincipal() {
         initComponents();
+        casosDeUso = new CasosDeUso(idCasosDeUso);
         PanelFondo panelFondo = new PanelFondo();
         this.add(panelFondo, BorderLayout.CENTER);
         this.pack();
@@ -96,22 +101,22 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
 
-     java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmConfigurarPartida().setVisible(true);
+                new FrmConfigurarPartida(casosDeUso).setVisible(true);
             }
         });
-
+        this.dispose();
     }//GEN-LAST:event_btnCrearPartidaActionPerformed
 
     private void btnUnirsePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirsePartidaActionPerformed
 
-    java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmUnirsePartida().setVisible(true);
+                new FrmUnirsePartida(casosDeUso).setVisible(true);
             }
         });
-     
+        this.dispose();
     }//GEN-LAST:event_btnUnirsePartidaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -121,7 +126,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

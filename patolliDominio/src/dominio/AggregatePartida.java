@@ -20,7 +20,7 @@ public class AggregatePartida implements IAggregateRoot {
     private Tablero tablero;
     private boolean laPartidaHaIniciado;
     private int montoPorApuesta;
-    private int asignadorDeIdDeJugador;
+    private int asignadorDeIdDeJugador = 1;
     private Casilla[][] arregloParaAsignarCasillasEntradaSalida;
 
     /**
@@ -234,5 +234,12 @@ public class AggregatePartida implements IAggregateRoot {
         Jugador jugador = new Jugador(asignadorDeIdDeJugador, nombreDelJugador, colorDeFichaDelJugador, cantidadDePuntosDelJugador);
         this. listaDeJugadores.add(jugador);
         asignadorDeIdDeJugador ++;
+    }
+    
+    public void asignarCasillasDeEntradaYSalidaAJugadores(){
+        for (int i = 0; i < listaDeJugadores.size(); i++) {
+            listaDeJugadores.get(i).setCasillaDeEntrada(arregloParaAsignarCasillasEntradaSalida[i][0]);
+            listaDeJugadores.get(i).setCasillaDeSalida(arregloParaAsignarCasillasEntradaSalida[i][1]);
+        }
     }
 }

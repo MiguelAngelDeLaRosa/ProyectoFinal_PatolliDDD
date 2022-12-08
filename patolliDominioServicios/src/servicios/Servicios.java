@@ -6,12 +6,9 @@
 package servicios;
 
 import dominio.AggregatePartida;
-import dominio.Jugador;
+import dominio.Casilla;
 import dominio.Tablero;
-import interfaces_dominio.IAggregateRoot;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -20,36 +17,42 @@ import java.util.List;
  */
 public class Servicios {
     
+    private int idServicio;
     private AggregatePartida partida;
-    private final int idDePartida = 1001;
+    private final int idDePartida = 3001;
     private int cantidadDeJugadores;
+    private int cantidadDePuntosPorJugador;
 
-    public Servicios() {
+    public Servicios(int idServicio) {
+        this.idServicio = idServicio;
     }
     
     public void crearPartida(int numeroDeCasillasPorAspa, int cantidadDeJugadores, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador){
         partida = new AggregatePartida(idDePartida, numeroDeCasillasPorAspa, false, cantidadDePuntosPorJugador, nombreDelJugador, colorDeFichaDelJugador);
         this.cantidadDeJugadores = cantidadDeJugadores;
+        this.cantidadDePuntosPorJugador = cantidadDePuntosPorJugador;
     }
     
-    public void unirseAPartida(){
-        
+    public void unirseAPartida(String nombreDelJugador, Color colorDeFichaDelJugador){
+        partida.agregarJugador(nombreDelJugador, colorDeFichaDelJugador, cantidadDePuntosPorJugador);
     }
     
     public void iniciarPartida(){
-        
+        //Manejar con JOptionPane porque ya no hay tiempo para excepciones
+        partida.setLaPartidaHaIniciado(true);
+        partida.asignarCasillasDeEntradaYSalidaAJugadores();
     }
     
     public void salirDePartida(){
         
     }
     
-    public void ejercerTurno(int valorObtenidoAlLanzarCañas){
+    public void ejercerTurno(int valorObtenidoAlLanzarCañas, Casilla casilla){
         
     }
     
-    private void asignarFichaACasilla(){
-
+    private void asignarFichaACasilla(Casilla casilla){
+        
     }
 
     public AggregatePartida getPartida() {
@@ -68,6 +71,16 @@ public class Servicios {
         this.cantidadDeJugadores = cantidadDeJugadores;
     }
     
+    public boolean coincideCantidadDeJugadoresConJugadoresAgregados(){
+        boolean respuesta = false;
+        
+        if(cantidadDeJugadores == partida.getListaDeJugadores().size()){
+            respuesta = true;
+        }
+        return respuesta;
+    }
     
-    
+    public Tablero enviarTableroAAplicacion(){
+        return partida.getTablero();
+    }
 }

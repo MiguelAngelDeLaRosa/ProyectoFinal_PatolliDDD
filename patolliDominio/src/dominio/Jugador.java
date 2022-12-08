@@ -19,8 +19,8 @@ public class Jugador {
     private String nombreDelJugador;
     private Color colorDeLasFichas;
     private int puntosParaApostar;
-    private int numeroDeCasillaDeEntrada;
-    private int numeroDeCasillaDeSalida;
+    private Casilla casillaDeEntrada;
+    private Casilla casillaDeSalida;
     private List<Ficha> listaDeFichasDelJugador;
 
     
@@ -68,20 +68,20 @@ public class Jugador {
         this.puntosParaApostar = puntosParaApostar;
     }
 
-    public int getNumeroDeCasillaDeEntrada() {
-        return numeroDeCasillaDeEntrada;
+    public Casilla getCasillaDeEntrada() {
+        return casillaDeEntrada;
     }
 
-    public void setNumeroDeCasillaDeEntrada(int numeroDeCasillaDeEntrada) {
-        this.numeroDeCasillaDeEntrada = numeroDeCasillaDeEntrada;
+    public void setCasillaDeEntrada(Casilla casillaDeEntrada) {
+        this.casillaDeEntrada = casillaDeEntrada;
     }
 
-    public int getNumeroDeCasillaDeSalida() {
-        return numeroDeCasillaDeSalida;
+    public Casilla getCasillaDeSalida() {
+        return casillaDeSalida;
     }
 
-    public void setNumeroDeCasillaDeSalida(int numeroDeCasillaDeSalida) {
-        this.numeroDeCasillaDeSalida = numeroDeCasillaDeSalida;
+    public void setCasillaDeSalida(Casilla casillaDeSalida) {
+        this.casillaDeSalida = casillaDeSalida;
     }
 
     public List<Ficha> getListaDeFichasDelJugador() {

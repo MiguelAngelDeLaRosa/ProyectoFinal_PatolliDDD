@@ -5,6 +5,7 @@
  */
 package guis;
 
+import aplicacion.CasosDeUso;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -14,11 +15,13 @@ import javax.swing.JOptionPane;
  */
 public class FrmUnirsePartida extends javax.swing.JFrame {
 
+    private CasosDeUso casosDeUso; 
     /**
      * Creates new form FrmUnirsePartida1
      */
-    public FrmUnirsePartida() {
+    public FrmUnirsePartida(CasosDeUso casosDeUso) {
         initComponents();
+        this.casosDeUso = casosDeUso;
     }
 
     /**
@@ -142,7 +145,12 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
     }//GEN-LAST:event_validaNombreKeyTyped
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmPrincipal().setVisible(true);
+            }
+        });
+        dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
@@ -168,43 +176,7 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmUnirsePartida().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

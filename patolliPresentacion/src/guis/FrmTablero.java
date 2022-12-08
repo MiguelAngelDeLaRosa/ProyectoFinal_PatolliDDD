@@ -5,6 +5,8 @@
  */
 package guis;
 
+import aplicacion.CasosDeUso;
+import composite.TableroGraphic;
 import java.awt.Graphics;
 import java.util.Random;
 
@@ -14,11 +16,12 @@ import java.util.Random;
  */
 public class FrmTablero extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmTablero2
-     */
-    public FrmTablero() {
+    private TableroGraphic tablero;
+    private CasosDeUso casosDeUso; 
+    
+    public FrmTablero(CasosDeUso casosDeUso) {
         initComponents();
+        this.casosDeUso = casosDeUso;
     }
 
     @Override
@@ -156,7 +159,12 @@ public class FrmTablero extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLanzarDadosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.dispose();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmPrincipal().setVisible(true);
+            }
+        });
+        dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnSiguienteTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteTurnoActionPerformed
@@ -167,42 +175,9 @@ public class FrmTablero extends javax.swing.JFrame {
     private void btnIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarPartidaActionPerformed
         btnLanzarDados.setEnabled(true);
         btnSiguienteTurno.setEnabled(true);
+        tablero = new TableroGraphic(casosDeUso.enviarTableroAPresentacion());
     }//GEN-LAST:event_btnIniciarPartidaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmTablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmTablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmTablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmTablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmTablero().setVisible(true);
-            }
-        });
-    }
     int avanceD;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarPartida;

@@ -5,6 +5,7 @@
  */
 package guis;
 
+import aplicacion.CasosDeUso;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,11 +14,13 @@ import javax.swing.JOptionPane;
  */
 public class FrmConfigurarPartida extends javax.swing.JFrame {
 
+    private CasosDeUso casosDeUso; 
     /**
      * Creates new form FrmConfigurarPartida2
      */
-    public FrmConfigurarPartida() {
+    public FrmConfigurarPartida(CasosDeUso casosDeUso) {
         initComponents();
+        this.casosDeUso = casosDeUso;
     }
 
     /**
@@ -46,7 +49,7 @@ public class FrmConfigurarPartida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        comboBoxCantidadDeCasillas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "44", "48", "52" }));
+        comboBoxCantidadDeCasillas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "44", "52", "60" }));
 
         comboBoxCantidadDeJugadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4" }));
 
@@ -64,6 +67,11 @@ public class FrmConfigurarPartida extends javax.swing.JFrame {
         });
 
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guis/Imagenes/txtRegresar.png"))); // NOI18N
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         txtMontoPorApuesta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -223,7 +231,7 @@ public class FrmConfigurarPartida extends javax.swing.JFrame {
             validacionDeCampos();
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new FrmTablero().setVisible(true);
+                    new FrmTablero(casosDeUso).setVisible(true);
                 }
             });
             dispose();
@@ -232,40 +240,15 @@ public class FrmConfigurarPartida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmConfigurarPartida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmConfigurarPartida().setVisible(true);
+                new FrmPrincipal().setVisible(true);
             }
         });
-    }
+        dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
