@@ -10,13 +10,15 @@ import composite.TableroGraphic;
 import dto.DTOCasilla;
 import dto.IDTO;
 import java.awt.Graphics;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
 /**
  *
  * @author gerar
  */
-public class FrmTablero extends javax.swing.JFrame {
+public class FrmTablero extends javax.swing.JFrame implements Observer {
 
     private TableroGraphic tablero;
     private CasosDeUso casosDeUso; 
@@ -263,5 +265,10 @@ public class FrmTablero extends javax.swing.JFrame {
 
     private void siguienteTurno() {
 
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
