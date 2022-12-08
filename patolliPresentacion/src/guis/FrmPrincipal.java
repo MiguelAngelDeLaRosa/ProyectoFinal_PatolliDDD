@@ -1,6 +1,6 @@
 package guis;
 
-import aplicacion.CasosDeUso;
+import aplicacion.Aplicacion;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
  */
 public class FrmPrincipal extends javax.swing.JFrame {
 
-    private CasosDeUso casosDeUso;
+    private Aplicacion casosDeUso;
     private final int idCasosDeUso = 1001;
 
     /**
@@ -20,7 +20,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
      */
     public FrmPrincipal() {
         initComponents();
-        casosDeUso = new CasosDeUso(idCasosDeUso);
+        casosDeUso = new Aplicacion(idCasosDeUso);
         PanelFondo panelFondo = new PanelFondo();
         this.add(panelFondo, BorderLayout.CENTER);
         this.pack();

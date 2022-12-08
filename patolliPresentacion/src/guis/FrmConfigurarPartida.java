@@ -5,7 +5,7 @@
  */
 package guis;
 
-import aplicacion.CasosDeUso;
+import aplicacion.Aplicacion;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
  */
 public class FrmConfigurarPartida extends javax.swing.JFrame {
 
-    private CasosDeUso casosDeUso;
+    private Aplicacion casosDeUso;
 
     /**
      * Creates new form FrmConfigurarPartida2
      */
-    public FrmConfigurarPartida(CasosDeUso casosDeUso) {
+    public FrmConfigurarPartida(Aplicacion casosDeUso) {
         initComponents();
         this.casosDeUso = casosDeUso;
     }

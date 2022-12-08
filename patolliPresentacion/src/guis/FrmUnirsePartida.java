@@ -5,7 +5,7 @@
  */
 package guis;
 
-import aplicacion.CasosDeUso;
+import aplicacion.Aplicacion;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -15,11 +15,11 @@ import javax.swing.JOptionPane;
  */
 public class FrmUnirsePartida extends javax.swing.JFrame {
 
-    private CasosDeUso casosDeUso; 
+    private Aplicacion casosDeUso; 
     /**
      * Creates new form FrmUnirsePartida1
      */
-    public FrmUnirsePartida(CasosDeUso casosDeUso) {
+    public FrmUnirsePartida(Aplicacion casosDeUso) {
         initComponents();
         this.casosDeUso = casosDeUso;
     }

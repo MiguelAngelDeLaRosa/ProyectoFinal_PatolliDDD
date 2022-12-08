@@ -5,7 +5,7 @@
  */
 package guis;
 
-import aplicacion.CasosDeUso;
+import aplicacion.Aplicacion;
 import composite.TableroGraphic;
 import dto.DTOCasilla;
 import dto.IDTO;
@@ -21,12 +21,12 @@ import java.util.Random;
 public class FrmTablero extends javax.swing.JFrame implements Observer {
 
     private TableroGraphic tablero;
-    private CasosDeUso casosDeUso; 
+    private Aplicacion casosDeUso; 
     private IDTO dto;
     private Graphics g;
     private int numeroDeJugadorEnTurno;
     
-    public FrmTablero(CasosDeUso casosDeUso) {
+    public FrmTablero(Aplicacion casosDeUso) {
         initComponents();
         this.casosDeUso = casosDeUso;
         dto = new DTOCasilla();
