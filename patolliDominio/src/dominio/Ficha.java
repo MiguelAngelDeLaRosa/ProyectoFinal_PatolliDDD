@@ -13,7 +13,7 @@ import java.awt.Color;
 public class Ficha {
 
     private int numeroDeFicha;
-    private Jugador idJugador;
+    private int idJugador;
     private Color colorDeFicha;
     private int puntoEnEjeX;
     private int puntoEnEjeY;
@@ -25,7 +25,7 @@ public class Ficha {
 
     }
 
-    public Ficha(int numeroDeFicha, Jugador idJugador, Color colorDeFicha, boolean fichaEstaEnJuego, boolean fichaYaEntroATablero) {
+    public Ficha(int numeroDeFicha, int idJugador, Color colorDeFicha, boolean fichaEstaEnJuego, boolean fichaYaEntroATablero) {
         this.numeroDeFicha = numeroDeFicha;
         this.idJugador = idJugador;
         this.colorDeFicha = colorDeFicha;
@@ -41,11 +41,11 @@ public class Ficha {
         this.numeroDeFicha = numeroDeFicha;
     }
 
-    public Jugador getIdJugador() {
+    public int getIdJugador() {
         return idJugador;
     }
 
-    public void setIdJugador(Jugador idJugador) {
+    public void setIdJugador(int idJugador) {
         this.idJugador = idJugador;
     }
 

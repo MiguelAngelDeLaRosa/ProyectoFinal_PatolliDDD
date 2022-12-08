@@ -6,8 +6,8 @@
 package dominio;
 
 import java.awt.Color;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,13 +15,13 @@ import java.util.Queue;
  */
 public class Jugador {
 
-    private int idJugador;
+    private int idDeJugador;
     private String nombreDelJugador;
     private Color colorDeLasFichas;
     private int puntosParaApostar;
     private int numeroDeCasillaDeEntrada;
     private int numeroDeCasillaDeSalida;
-    private Queue<Ficha> colaDeFichas;
+    private List<Ficha> listaDeFichasDelJugador;
 
     
     public Jugador() {
@@ -29,20 +29,19 @@ public class Jugador {
     }
 
     public Jugador(int idJugador, String nombreDelJugador, Color colorDeLasFichas, int puntosParaApostar) {
-        this.idJugador = idJugador;
+        this.idDeJugador = idJugador;
         this.nombreDelJugador = nombreDelJugador;
         this.colorDeLasFichas = colorDeLasFichas;
         this.puntosParaApostar = puntosParaApostar;
-        this.colaDeFichas = new LinkedList<>();
-//        llenarColaDeFichas();
+        this.listaDeFichasDelJugador = new ArrayList<>();
     }
 
-    public int getIdJugador() {
-        return idJugador;
+    public int getIdDeJugador() {
+        return idDeJugador;
     }
 
-    public void setIdJugador(int idJugador) {
-        this.idJugador = idJugador;
+    public void setIdDeJugador(int idDeJugador) {
+        this.idDeJugador = idDeJugador;
     }
 
     public String getNombreDelJugador() {
@@ -85,24 +84,22 @@ public class Jugador {
         this.numeroDeCasillaDeSalida = numeroDeCasillaDeSalida;
     }
 
-    public Queue<Ficha> getColaDeFichas() {
-        return colaDeFichas;
+    public List<Ficha> getListaDeFichasDelJugador() {
+        return listaDeFichasDelJugador;
     }
 
-    public void setColaDeFichas(Queue<Ficha> colaDeFichas) {
-        this.colaDeFichas = colaDeFichas;
+    public void setListaDeFichasDelJugador(List<Ficha> listaDeFichasDelJugador) {
+        this.listaDeFichasDelJugador = listaDeFichasDelJugador;
     }
-
-//    public void llenarColaDeFichas(){
-//        int contadorParaAsignarId = 1;
-//        
-//        for (int i = 0; i < 5; i++) {
-//            Ficha ficha = new Ficha(contadorParaAsignarId, this.idJugador, this.colorDeLasFichas, true, false);
-//            colaDeFichas.offer(ficha);
-//            contadorParaAsignarId ++;
-//        }
-//    }
     
+    public void llenarListaDeFichas(){
+        int numeroDeFicha = 1;
+        for (int i = 0; i < 5; i++) {
+            Ficha ficha = new Ficha(numeroDeFicha, idDeJugador, colorDeLasFichas, true, false);
+            listaDeFichasDelJugador.add(ficha);
+            numeroDeFicha ++;
+        }
+    }
     
 
 }

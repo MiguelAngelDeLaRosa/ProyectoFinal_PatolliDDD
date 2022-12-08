@@ -25,9 +25,9 @@ public class Pruebas {
 //            System.out.println("--------------------------------------------");
 //        }
 //        
-        AggregatePartida partida = new AggregatePartida(1001, tablero, false, 5000);
+        //AggregatePartida partida = new AggregatePartida(1001, tablero, false, 5000);
         Casilla[][] arregloDePrueba = new Casilla[4][2];
-        arregloDePrueba = partida.getArregloParaAsignarCasillasEntradaSalida();
+        //arregloDePrueba = partida.getArregloParaAsignarCasillasEntradaSalida();
         
         for (int i = 0; i < arregloDePrueba.length; i++) {
             for (int j = 0; j < arregloDePrueba.length - 2; j++) {

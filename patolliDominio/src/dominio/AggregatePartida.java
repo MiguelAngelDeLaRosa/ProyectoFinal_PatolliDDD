@@ -23,12 +23,6 @@ public class AggregatePartida implements IAggregateRoot {
     private int asignadorDeIdDeJugador;
     private Casilla[][] arregloParaAsignarCasillasEntradaSalida;
 
-    public AggregatePartida(int idPartida) {
-        this.idPartida = idPartida;
-        arregloParaAsignarCasillasEntradaSalida = new Casilla[4][2];
-        llenarArregloDeAsignacionDeCasillas();
-    }
-
     /**
      * Constructor que inicializa algunos atributos de la clase al valor de los
      * parámetros recibidos. Este constructor no recibe una lista de jugadores y
@@ -42,12 +36,13 @@ public class AggregatePartida implements IAggregateRoot {
      * @param laPartidaHaIniciado booleano a asignar al atributo
      * laPartidaHaIniciado de la clase.
      */
-    public AggregatePartida(int idPartida, Tablero tablero, boolean laPartidaHaIniciado, int montoPorApuesta) {
-        this.montoPorApuesta = montoPorApuesta;
+    public AggregatePartida(int idPartida, int numeroDeCasillasPorAspa, boolean laPartidaHaIniciado, int cantidadDePuntosPorJugador, String nombreDelJugador, Color colorDeFichaDelJugador) {
         this.idPartida = idPartida;
-        this.tablero = tablero;
+        tablero = new Tablero(numeroDeCasillasPorAspa);
         this.laPartidaHaIniciado = laPartidaHaIniciado;
+        this.montoPorApuesta = montoPorApuesta;
         listaDeJugadores = new ArrayList<>();
+        agregarJugador(nombreDelJugador, colorDeFichaDelJugador, cantidadDePuntosPorJugador);
         arregloParaAsignarCasillasEntradaSalida = new Casilla[4][2];
         llenarArregloDeAsignacionDeCasillas();
     }
@@ -142,6 +137,16 @@ public class AggregatePartida implements IAggregateRoot {
         this.tablero = tablero;
     }
 
+    public int getMontoPorApuesta() {
+        return montoPorApuesta;
+    }
+
+    public void setMontoPorApuesta(int montoPorApuesta) {
+        this.montoPorApuesta = montoPorApuesta;
+    }
+
+    
+    
     /**
      * Retorna un valor booleano que indica si la partida ha iniciado.
      *
@@ -225,4 +230,9 @@ public class AggregatePartida implements IAggregateRoot {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public void agregarJugador(String nombreDelJugador, int cantidadDePuntosDelJugador, Color colorDeFichaDelJugador){
+        Jugador jugador = new Jugador(asignadorDeIdDeJugador, nombreDelJugador, colorDeFichaDelJugador, cantidadDePuntosDelJugador);
+        this. listaDeJugadores.add(jugador);
+        asignadorDeIdDeJugador ++;
+    }
 }

@@ -20,14 +20,16 @@ import java.util.List;
  */
 public class Servicios {
     
-    private IAggregateRoot partida;
+    private AggregatePartida partida;
     private final int idDePartida = 1001;
-    private List<Jugador> listaDeJugadores;
+    private int cantidadDeJugadores;
+
+    public Servicios() {
+    }
     
     public void crearPartida(int numeroDeCasillasPorAspa, int cantidadDeJugadores, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador){
-        partida = new AggregatePartida(idDePartida);
-        listaDeJugadores = new ArrayList<>();
-        partida.crearTablero(numeroDeCasillasPorAspa);
+        partida = new AggregatePartida(idDePartida, numeroDeCasillasPorAspa, false, cantidadDePuntosPorJugador, nombreDelJugador, colorDeFichaDelJugador);
+        this.cantidadDeJugadores = cantidadDeJugadores;
     }
     
     public void unirseAPartida(){
@@ -49,4 +51,23 @@ public class Servicios {
     private void asignarFichaACasilla(){
 
     }
+
+    public AggregatePartida getPartida() {
+        return partida;
+    }
+
+    public void setPartida(AggregatePartida partida) {
+        this.partida = partida;
+    }
+
+    public int getCantidadDeJugadores() {
+        return cantidadDeJugadores;
+    }
+
+    public void setCantidadDeJugadores(int cantidadDeJugadores) {
+        this.cantidadDeJugadores = cantidadDeJugadores;
+    }
+    
+    
+    
 }
