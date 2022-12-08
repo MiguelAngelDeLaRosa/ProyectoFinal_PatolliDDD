@@ -2,14 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package dominio;
 
 import interfaces_dominio.IAggregateRoot;
+import java.awt.Color;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
  *
@@ -22,11 +20,13 @@ public class AggregatePartida implements IAggregateRoot {
     private Tablero tablero;
     private boolean laPartidaHaIniciado;
     private int montoPorApuesta;
+    private int asignadorDeIdDeJugador;
+    private Casilla[][] arregloParaAsignarCasillasEntradaSalida;
 
-    /**
-     * Constructor por omisión.
-     */
-    public AggregatePartida() {
+    public AggregatePartida(int idPartida) {
+        this.idPartida = idPartida;
+        arregloParaAsignarCasillasEntradaSalida = new Casilla[4][2];
+        llenarArregloDeAsignacionDeCasillas();
     }
 
     /**
@@ -48,6 +48,8 @@ public class AggregatePartida implements IAggregateRoot {
         this.tablero = tablero;
         this.laPartidaHaIniciado = laPartidaHaIniciado;
         listaDeJugadores = new ArrayList<>();
+        arregloParaAsignarCasillasEntradaSalida = new Casilla[4][2];
+        llenarArregloDeAsignacionDeCasillas();
     }
 
     /**
@@ -77,7 +79,9 @@ public class AggregatePartida implements IAggregateRoot {
      * @param jugador instancia de tipo jugador a agregar a la lista de
      * jugadores.
      */
-    public void agregarJugador(Jugador jugador) {
+    public void agregarJugador(String nombreDelJugador, Color colorDeFicha, int puntosParaApostar) {
+        Jugador jugador = new Jugador(asignadorDeIdDeJugador, nombreDelJugador, colorDeFicha, puntosParaApostar);
+        asignadorDeIdDeJugador++;
         this.listaDeJugadores.add(jugador);
     }
 
@@ -158,9 +162,42 @@ public class AggregatePartida implements IAggregateRoot {
         this.laPartidaHaIniciado = laPartidaHaIniciado;
     }
 
+    public Casilla[][] getArregloParaAsignarCasillasEntradaSalida() {
+        return arregloParaAsignarCasillasEntradaSalida;
+    }
+
+    public void setArregloParaAsignarCasillasEntradaSalida(Casilla[][] arregloParaAsignarCasillasEntradaSalida) {
+        this.arregloParaAsignarCasillasEntradaSalida = arregloParaAsignarCasillasEntradaSalida;
+    }
+
+    
+    /**
+     * Construye el arreglo con las casillas de entrada y salida para cada
+     * jugador.
+     */
+    public void llenarArregloDeAsignacionDeCasillas() {
+        Aspa aspaSuperior = tablero.getListaDeAspas().get(0);
+        Aspa aspaIzquierda = tablero.getListaDeAspas().get(1);
+        Aspa aspaInferior = tablero.getListaDeAspas().get(2);
+        Aspa aspaDerecha = tablero.getListaDeAspas().get(3);
+
+        int c = aspaSuperior.getCasillaInicial().getNumeroDeCasilla();
+        arregloParaAsignarCasillasEntradaSalida[0][0] = aspaSuperior.getCasillaInicial();
+        arregloParaAsignarCasillasEntradaSalida[0][1] = aspaDerecha.getCasillaInicial();
+
+        arregloParaAsignarCasillasEntradaSalida[1][0] = aspaInferior.getCasillaInicial();
+        arregloParaAsignarCasillasEntradaSalida[1][1] = aspaIzquierda.getCasillaInicial();
+
+        arregloParaAsignarCasillasEntradaSalida[2][0] = aspaIzquierda.getCasillaInicial();
+        arregloParaAsignarCasillasEntradaSalida[2][1] = aspaSuperior.getCasillaInicial();
+
+        arregloParaAsignarCasillasEntradaSalida[3][0] = aspaDerecha.getCasillaInicial();
+        arregloParaAsignarCasillasEntradaSalida[3][1] = aspaInferior.getCasillaInicial();
+    }
+
     @Override
-    public void crearTablero(int numCasillas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void crearTablero(int numeroDeCasillasPorAspa) {
+        this.tablero = new Tablero(numeroDeCasillasPorAspa);
     }
 
     @Override
@@ -187,6 +224,5 @@ public class AggregatePartida implements IAggregateRoot {
     public Tablero obtenerTablero() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

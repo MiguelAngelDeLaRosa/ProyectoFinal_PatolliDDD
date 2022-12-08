@@ -137,4 +137,8 @@ public class Aspa {
         this.listaDeCasillas = listaDeCasillas;
     }
     
+    public Casilla getCasillaInicial(){
+        return listaDeCasillas.get(0);
+    }
+    
 }

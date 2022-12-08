@@ -6,6 +6,7 @@ package interfaces_dominio;
 
 import dominio.Jugador;
 import dominio.Tablero;
+import java.awt.Color;
 
 /**
  *
@@ -17,7 +18,7 @@ public interface IAggregateRoot {
     
     public boolean verificarNumeroDeJugadores();
     
-    public void agregarJugador(Jugador jugador);
+    public void agregarJugador(String nombreDelJugador, Color colorDeFicha, int puntosParaApostar);
     
     public void moverFichaDeJugador(int idJugador, int numeroDeCasillasPorAvanzar);
     
@@ -26,4 +27,6 @@ public interface IAggregateRoot {
     public Jugador obtenerJugador(int idJugador);
     
     public Tablero obtenerTablero();
+    
+
 }

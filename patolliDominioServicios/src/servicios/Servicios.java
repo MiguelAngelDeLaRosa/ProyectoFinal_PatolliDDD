@@ -8,6 +8,7 @@ package servicios;
 import dominio.AggregatePartida;
 import dominio.Jugador;
 import dominio.Tablero;
+import interfaces_dominio.IAggregateRoot;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +20,14 @@ import java.util.List;
  */
 public class Servicios {
     
-    private AggregatePartida partida;
+    private IAggregateRoot partida;
     private final int idDePartida = 1001;
     private List<Jugador> listaDeJugadores;
     
     public void crearPartida(int numeroDeCasillasPorAspa, int cantidadDeJugadores, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador){
+        partida = new AggregatePartida(idDePartida);
         listaDeJugadores = new ArrayList<>();
-        Tablero tablero = new Tablero(numeroDeCasillasPorAspa);
+        partida.crearTablero(numeroDeCasillasPorAspa);
     }
     
     public void unirseAPartida(){
