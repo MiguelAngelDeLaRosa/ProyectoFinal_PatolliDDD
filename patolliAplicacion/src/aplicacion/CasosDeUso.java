@@ -26,8 +26,7 @@ public class CasosDeUso {
     
     
     public void crearPartida(int cantidadDeCasillas, int cantidadDeJugadores, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador){
-        
-        
+        servicios.crearPartida(cantidadDeCasillas, cantidadDeJugadores, cantidadDePuntosPorJugador, montoPorApuesta, nombreDelJugador, colorDeFichaDelJugador);
     }
     
     public void unirseAPartida(){

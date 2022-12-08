@@ -30,7 +30,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="809" max="32767" attributes="0"/>
+              <EmptySpace pref="1122" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="caña1" min="-2" pref="63" max="-2" attributes="0"/>
@@ -68,7 +68,7 @@
               <Component id="btnSiguienteTurno" min="-2" pref="58" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnLanzarDados" min="-2" pref="58" max="-2" attributes="0"/>
-              <EmptySpace pref="274" max="32767" attributes="0"/>
+              <EmptySpace pref="321" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="caña1" alignment="3" min="-2" pref="195" max="-2" attributes="0"/>
                   <Component id="caña2" alignment="3" min="-2" pref="195" max="-2" attributes="0"/>

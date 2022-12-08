@@ -14,9 +14,6 @@ public class Ficha {
 
     private int numeroDeFicha;
     private int idJugador;
-    private Color colorDeFicha;
-    private int puntoEnEjeX;
-    private int puntoEnEjeY;
     private boolean fichaEstaEnJuego;
     private boolean fichaYaEntroATablero;
 
@@ -28,7 +25,6 @@ public class Ficha {
     public Ficha(int numeroDeFicha, int idJugador, Color colorDeFicha, boolean fichaEstaEnJuego, boolean fichaYaEntroATablero) {
         this.numeroDeFicha = numeroDeFicha;
         this.idJugador = idJugador;
-        this.colorDeFicha = colorDeFicha;
         this.fichaEstaEnJuego = fichaEstaEnJuego;
         this.fichaYaEntroATablero = fichaYaEntroATablero;
     }
@@ -47,30 +43,6 @@ public class Ficha {
 
     public void setIdJugador(int idJugador) {
         this.idJugador = idJugador;
-    }
-
-    public Color getColorDeFicha() {
-        return colorDeFicha;
-    }
-
-    public void setColorDeFicha(Color colorDeFicha) {
-        this.colorDeFicha = colorDeFicha;
-    }
-
-    public int getPuntoEnEjeX() {
-        return puntoEnEjeX;
-    }
-
-    public void setPuntoEnEjeX(int puntoEnEjeX) {
-        this.puntoEnEjeX = puntoEnEjeX;
-    }
-
-    public int getPuntoEnEjeY() {
-        return puntoEnEjeY;
-    }
-
-    public void setPuntoEnEjeY(int puntoEnEjeY) {
-        this.puntoEnEjeY = puntoEnEjeY;
     }
 
     public boolean isFichaEstaEnJuego() {

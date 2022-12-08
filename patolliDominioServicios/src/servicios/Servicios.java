@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package servicios;
 
 import dominio.AggregatePartida;
@@ -10,13 +9,12 @@ import dominio.Casilla;
 import dominio.Tablero;
 import java.awt.Color;
 
-
 /**
  *
  * @author edw_v
  */
 public class Servicios {
-    
+
     private int idServicio;
     private AggregatePartida partida;
     private final int idDePartida = 3001;
@@ -26,33 +24,38 @@ public class Servicios {
     public Servicios(int idServicio) {
         this.idServicio = idServicio;
     }
-    
-    public void crearPartida(int numeroDeCasillasPorAspa, int cantidadDeJugadores, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador){
+
+    public void crearPartida(int numeroDeCasillasPorAspa, int cantidadDeJugadores, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador) {
         partida = new AggregatePartida(idDePartida, numeroDeCasillasPorAspa, false, cantidadDePuntosPorJugador, nombreDelJugador, colorDeFichaDelJugador);
         this.cantidadDeJugadores = cantidadDeJugadores;
         this.cantidadDePuntosPorJugador = cantidadDePuntosPorJugador;
     }
-    
-    public void unirseAPartida(String nombreDelJugador, Color colorDeFichaDelJugador){
+
+    public void unirseAPartida(String nombreDelJugador, Color colorDeFichaDelJugador) {
         partida.agregarJugador(nombreDelJugador, colorDeFichaDelJugador, cantidadDePuntosPorJugador);
     }
-    
-    public void iniciarPartida(){
-        //Manejar con JOptionPane porque ya no hay tiempo para excepciones
-        partida.setLaPartidaHaIniciado(true);
-        partida.asignarCasillasDeEntradaYSalidaAJugadores();
-    }
-    
-    public void salirDePartida(){
+
+    public boolean iniciarPartida() {
+        boolean sePuedeIniciarPartida = coincideCantidadDeJugadoresConJugadoresAgregados();
+
+        if (sePuedeIniciarPartida) {
+            partida.setLaPartidaHaIniciado(true);
+            partida.asignarCasillasDeEntradaYSalidaAJugadores();
+        }
         
+        return sePuedeIniciarPartida;
     }
-    
-    public void ejercerTurno(int valorObtenidoAlLanzarCañas, Casilla casilla){
-        
+
+    public void salirDePartida() {
+
     }
-    
-    private void asignarFichaACasilla(Casilla casilla){
-        
+
+    public void ejercerTurno(int valorObtenidoAlLanzarCañas, Casilla casilla) {
+
+    }
+
+    private void asignarFichaACasilla(Casilla casilla) {
+
     }
 
     public AggregatePartida getPartida() {
@@ -70,17 +73,19 @@ public class Servicios {
     public void setCantidadDeJugadores(int cantidadDeJugadores) {
         this.cantidadDeJugadores = cantidadDeJugadores;
     }
-    
-    public boolean coincideCantidadDeJugadoresConJugadoresAgregados(){
+
+    public boolean coincideCantidadDeJugadoresConJugadoresAgregados() {
         boolean respuesta = false;
-        
-        if(cantidadDeJugadores == partida.getListaDeJugadores().size()){
+
+        if (cantidadDeJugadores == partida.getListaDeJugadores().size()) {
             respuesta = true;
         }
         return respuesta;
     }
-    
-    public Tablero enviarTableroAAplicacion(){
+
+    public Tablero enviarTableroAAplicacion() {
         return partida.getTablero();
     }
+    
+    
 }

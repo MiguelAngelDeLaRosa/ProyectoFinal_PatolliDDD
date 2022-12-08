@@ -7,6 +7,8 @@ package guis;
 
 import aplicacion.CasosDeUso;
 import composite.TableroGraphic;
+import dto.DTOCasilla;
+import dto.IDTO;
 import java.awt.Graphics;
 import java.util.Random;
 
@@ -18,15 +20,21 @@ public class FrmTablero extends javax.swing.JFrame {
 
     private TableroGraphic tablero;
     private CasosDeUso casosDeUso; 
+    private IDTO dto;
+    private Graphics g;
+    private int numeroDeJugadorEnTurno;
     
     public FrmTablero(CasosDeUso casosDeUso) {
         initComponents();
         this.casosDeUso = casosDeUso;
+        dto = new DTOCasilla();
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        tablero = new TableroGraphic(casosDeUso.enviarTableroAPresentacion());
+        tablero.dibujar(g);
     }
 
     /**
@@ -101,7 +109,7 @@ public class FrmTablero extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(809, Short.MAX_VALUE)
+                .addContainerGap(1122, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(caña1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,7 +141,7 @@ public class FrmTablero extends javax.swing.JFrame {
                 .addComponent(btnSiguienteTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLanzarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(caña1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(caña2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,7 +183,8 @@ public class FrmTablero extends javax.swing.JFrame {
     private void btnIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarPartidaActionPerformed
         btnLanzarDados.setEnabled(true);
         btnSiguienteTurno.setEnabled(true);
-        tablero = new TableroGraphic(casosDeUso.enviarTableroAPresentacion());
+        btnIniciarPartida.setVisible(false);
+        numeroDeJugadorEnTurno = 1;
     }//GEN-LAST:event_btnIniciarPartidaActionPerformed
 
     int avanceD;

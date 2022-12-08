@@ -6,6 +6,7 @@
 package guis;
 
 import aplicacion.CasosDeUso;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class FrmConfigurarPartida extends javax.swing.JFrame {
 
-    private CasosDeUso casosDeUso; 
+    private CasosDeUso casosDeUso;
+
     /**
      * Creates new form FrmConfigurarPartida2
      */
@@ -202,44 +204,93 @@ public class FrmConfigurarPartida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNombreDelJugadorKeyTyped
 
-    private void validacionDeCampos() throws Exception {
+    /**
+     * Valida que los campos de texto no estén vacíos y que cumplan con las
+     * reglas necesarias para poder crear una partida.
+     *
+     * @return String vacío en caso de no tener error, en caso contrario, manda
+     * un String con la descripción del error encontrado.
+     */
+    private String validacionDeCampos() {
         boolean montoPorApuestaEsMenorAPuntosPorJugador = true;
-        int puntosPorJugador = Integer.parseInt(txtPuntosPorJugador.getText());
-        int montoPorApuesta = Integer.parseInt(txtMontoPorApuesta.getText());
 
+        String error = null;
         if (txtPuntosPorJugador.getText().isEmpty()) {
-            throw new Exception("Debe ingresar un valor válido en el campo: PUNTOS POR JUGADOR");
+            error = "Debe ingresar un valor válido en el campo: PUNTOS POR JUGADOR";
+            return error;
         }
 
         if (txtMontoPorApuesta.getText().isEmpty()) {
-            throw new Exception("Debe ingresar un valor válido en el campo: MONTO POR APUESTA");
+            error = "Debe ingresar un valor válido en el campo: MONTO POR APUESTA";
+            return error;
         }
 
+        int puntosPorJugador = Integer.parseInt(txtPuntosPorJugador.getText());
+        int montoPorApuesta = Integer.parseInt(txtMontoPorApuesta.getText());
+
         if (puntosPorJugador < montoPorApuesta) {
-            throw new Exception("El monto por apuesta no puede ser mayor a la cantidad de puntos por jugador.");
+            error = "El monto por apuesta no puede ser mayor a la cantidad de puntos por jugador.";
+            return error;
         }
 
         if (txtNombreDelJugador.getText().isEmpty()) {
-            throw new Exception("Debe ingresar un nombre en el campo: NOMBRE DE JUGADOR");
+            error = "Debe ingresar un nombre en el campo: NOMBRE DE JUGADOR";
+            return error;
         }
-
+        return error;
     }
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
-        try {
-            validacionDeCampos();
+        String error = validacionDeCampos();
+        if (error == null) {
+            int catidadDeCasillaPorAspa = (Integer.parseInt(comboBoxCantidadDeCasillas.getSelectedItem().toString())) / 8;
+            int cantidadDeJugadores = Integer.parseInt(comboBoxCantidadDeJugadores.getSelectedItem().toString());
+            int cantidadDePuntosPorJugador = Integer.parseInt(txtPuntosPorJugador.getText());
+            int montoPorApuesta = Integer.parseInt(txtMontoPorApuesta.getText());
+            String nombreDelJugador = txtNombreDelJugador.getText();
+            Color colorDelJugador = colorSeleccionado();
+            casosDeUso.crearPartida(catidadDeCasillaPorAspa, cantidadDeJugadores, cantidadDePuntosPorJugador, montoPorApuesta, nombreDelJugador, colorDelJugador);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new FrmTablero(casosDeUso).setVisible(true);
                 }
             });
             dispose();
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, "Hay que mostrar el error específico", "ERROR EN CAMPOS", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showConfirmDialog(null, error, "ERROR EN CAMPOS", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    /**
+     * Devuelve un color, dependiendo de la opción seleccionada en el comboBox
+     * de colores.
+     *
+     * @return Color seleccionado.
+     */
+    public Color colorSeleccionado() {
+        Color color = null;
+        String colorSeleccionado = comboBoxColoresParaFicha.getSelectedItem().toString();
+
+        switch (colorSeleccionado) {
+            case "Azul":
+                color = Color.BLUE;
+                break;
+            case "Verde":
+                color = Color.GREEN;
+                break;
+            case "Rojo":
+                color = Color.RED;
+                break;
+            case "Amarillo":
+                color = Color.YELLOW;
+                break;
+        }
+
+        return color;
+    }
+    
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
