@@ -33,6 +33,9 @@ public class Aspa {
      * @param numeroDeCasillasPorAspa entero que indica el número de casilla por
      * aspa.
      * @param tipoDeAspa string que indica el tipo de aspa que será.
+     * @param asignadorDeNumeroDeCasilla entero utilizado para asignarle un
+     * número de casilla a cada casilla de la lista de casillas que tendrá el
+     * aspa.
      */
     public Aspa(int asignadorDeNumeroDeCasilla, int numeroDeCasillasPorAspa, String tipoDeAspa) {
         this.asignadorDeNumeroDeCasilla = asignadorDeNumeroDeCasilla;
@@ -55,15 +58,15 @@ public class Aspa {
             } else {
                 listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 2, false));
             }
-            asignadorDeNumeroDeCasilla ++;
+            asignadorDeNumeroDeCasilla++;
         }
 
         //Se crean las dos casillas circulares.
         listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 4, false));
-        asignadorDeNumeroDeCasilla ++;
+        asignadorDeNumeroDeCasilla++;
         listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 4, false));
-        asignadorDeNumeroDeCasilla ++;
-        
+        asignadorDeNumeroDeCasilla++;
+
         //Ciclo para crear la segunda hilera de casillas.
         for (int j = 0; j < numeroDeCasillasPorAspa - 1; j++) {
             //Si las casillas son las últimas dos, las cuales tendrán castigo.
@@ -72,7 +75,7 @@ public class Aspa {
             } else {
                 listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 2, false));
             }
-            asignadorDeNumeroDeCasilla ++;
+            asignadorDeNumeroDeCasilla++;
         }
 
         //Se agregan las casillas triangulares
@@ -136,9 +139,9 @@ public class Aspa {
     public void setListaDeCasillas(List<Casilla> listaDeCasillas) {
         this.listaDeCasillas = listaDeCasillas;
     }
-    
-    public Casilla getCasillaInicial(){
+
+    public Casilla getCasillaInicial() {
         return listaDeCasillas.get(0);
     }
-    
+
 }

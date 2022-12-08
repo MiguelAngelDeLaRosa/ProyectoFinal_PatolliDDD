@@ -26,7 +26,7 @@ public class Servicios {
     }
 
     public void crearPartida(int numeroDeCasillasPorAspa, int cantidadDeJugadores, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador) {
-        partida = new AggregatePartida(idDePartida, numeroDeCasillasPorAspa, false, cantidadDePuntosPorJugador, nombreDelJugador, colorDeFichaDelJugador);
+        partida = new AggregatePartida(idDePartida, numeroDeCasillasPorAspa, false, cantidadDePuntosPorJugador, montoPorApuesta, nombreDelJugador, colorDeFichaDelJugador);
         this.cantidadDeJugadores = cantidadDeJugadores;
         this.cantidadDePuntosPorJugador = cantidadDePuntosPorJugador;
     }

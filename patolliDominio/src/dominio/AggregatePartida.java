@@ -27,16 +27,20 @@ public class AggregatePartida implements IAggregateRoot {
      * Constructor que inicializa algunos atributos de la clase al valor de los
      * parámetros recibidos. Este constructor no recibe una lista de jugadores y
      * será usado cuando se requiera asignar desde 0 a un jugador a la lista,
-     * por lo que solo inicializará la lista de jugadores a un ArrayList.
+     * por lo que solo inicializará la lista de jugadores a un ArrayList. Crea
+     * un jugador con los parámetros recibidos y llama al método de asignación
+     * de casillas.
      *
-     * @param idPartida entero con el valor a asignar al atributo idPartida de
-     * la clase.
-     * @param tablero instancia de tipo Tablero a asignar al atributo tablero de
-     * la clase.
-     * @param laPartidaHaIniciado booleano a asignar al atributo
-     * laPartidaHaIniciado de la clase.
+     * @param idPartida parámetro con el id de la partida para asignarlo al
+     * atributo de la clase.
+     * @param numeroDeCasillasPorAspa
+     * @param laPartidaHaIniciado parámetro que indica si la partida ha iniciado
+     * y se lo asigna al atributo de la clase.
+     * @param cantidadDePuntosPorJugador
+     * @param nombreDelJugador
+     * @param colorDeFichaDelJugador
      */
-    public AggregatePartida(int idPartida, int numeroDeCasillasPorAspa, boolean laPartidaHaIniciado, int cantidadDePuntosPorJugador, String nombreDelJugador, Color colorDeFichaDelJugador) {
+    public AggregatePartida(int idPartida, int numeroDeCasillasPorAspa, boolean laPartidaHaIniciado, int cantidadDePuntosPorJugador, int montoPorApuesta, String nombreDelJugador, Color colorDeFichaDelJugador) {
         this.idPartida = idPartida;
         tablero = new Tablero(numeroDeCasillasPorAspa);
         this.laPartidaHaIniciado = laPartidaHaIniciado;
@@ -59,6 +63,8 @@ public class AggregatePartida implements IAggregateRoot {
      * la clase.
      * @param laPartidaHaIniciado booleano a asignar al atributo
      * laPartidaHaIniciado de la clase.
+     * @param montoPorApuesta entero con el valor a asignar al atributo
+     * montoPorApuesta de la clase.
      */
     public AggregatePartida(int idPartida, List<Jugador> listaDeJugadores, Tablero tablero, boolean laPartidaHaIniciado, int montoPorApuesta) {
         this.montoPorApuesta = montoPorApuesta;
@@ -69,10 +75,11 @@ public class AggregatePartida implements IAggregateRoot {
     }
 
     /**
-     * Agrega un jugador a la lista de jugadores
+     * Agrega un jugador a la lista de jugadores.
      *
-     * @param jugador instancia de tipo jugador a agregar a la lista de
-     * jugadores.
+     * @param nombreDelJugador String con el nombre del jugador.
+     * @param colorDeFicha color de ficha del jugador.
+     * @param puntosParaApostar puntos para apostar que tendrá el jugador.
      */
     public void agregarJugador(String nombreDelJugador, Color colorDeFicha, int puntosParaApostar) {
         Jugador jugador = new Jugador(asignadorDeIdDeJugador, nombreDelJugador, colorDeFicha, puntosParaApostar);
@@ -145,8 +152,6 @@ public class AggregatePartida implements IAggregateRoot {
         this.montoPorApuesta = montoPorApuesta;
     }
 
-    
-    
     /**
      * Retorna un valor booleano que indica si la partida ha iniciado.
      *
@@ -175,7 +180,6 @@ public class AggregatePartida implements IAggregateRoot {
         this.arregloParaAsignarCasillasEntradaSalida = arregloParaAsignarCasillasEntradaSalida;
     }
 
-    
     /**
      * Construye el arreglo con las casillas de entrada y salida para cada
      * jugador.
@@ -230,13 +234,10 @@ public class AggregatePartida implements IAggregateRoot {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void agregarJugador(String nombreDelJugador, int cantidadDePuntosDelJugador, Color colorDeFichaDelJugador){
-        Jugador jugador = new Jugador(asignadorDeIdDeJugador, nombreDelJugador, colorDeFichaDelJugador, cantidadDePuntosDelJugador);
-        this. listaDeJugadores.add(jugador);
-        asignadorDeIdDeJugador ++;
-    }
-    
-    public void asignarCasillasDeEntradaYSalidaAJugadores(){
+    /**
+     * Asigna las casillas de entrada y salida de cada jugador.
+     */
+    public void asignarCasillasDeEntradaYSalidaAJugadores() {
         for (int i = 0; i < listaDeJugadores.size(); i++) {
             listaDeJugadores.get(i).setCasillaDeEntrada(arregloParaAsignarCasillasEntradaSalida[i][0]);
             listaDeJugadores.get(i).setCasillaDeSalida(arregloParaAsignarCasillasEntradaSalida[i][1]);
