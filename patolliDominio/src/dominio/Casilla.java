@@ -30,6 +30,7 @@ public class Casilla {
      * Constructor que inicializa los atributos de la clase al valor de los
      * parámetros recibidos.
      *
+     * @param numeroDeCasilla número de casilla que se le ha asignado.
      * @param tipoDeCasilla entero que indica el tipo de casilla.
      * @param casillaTieneFicha booleano que indica si la casilla tiene ficha.
      */
@@ -39,10 +40,18 @@ public class Casilla {
         this.casillaTieneFicha = casillaTieneFicha;
     }
 
+    /**
+     * Retorna el número de casilla.
+     * @return entero con el número de casilla.
+     */
     public int getNumeroDeCasilla() {
         return numeroDeCasilla;
     }
 
+    /**
+     * Establece el atributo numeroDeCasilla al valor del parámetro recibido.
+     * @param numeroDeCasilla entero que indica el número de casilla.
+     */
     public void setNumeroDeCasilla(int numeroDeCasilla) {
         this.numeroDeCasilla = numeroDeCasilla;
     }
@@ -83,5 +92,5 @@ public class Casilla {
     public void setCasillaTieneFicha(boolean casillaTieneFicha) {
         this.casillaTieneFicha = casillaTieneFicha;
     }
-    
+
 }

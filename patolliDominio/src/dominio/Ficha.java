@@ -22,7 +22,7 @@ public class Ficha {
 
     }
 
-    public Ficha(int numeroDeFicha, int idJugador, Color colorDeFicha, boolean fichaEstaEnJuego, boolean fichaYaEntroATablero) {
+    public Ficha(int numeroDeFicha, int idJugador, boolean fichaEstaEnJuego, boolean fichaYaEntroATablero) {
         this.numeroDeFicha = numeroDeFicha;
         this.idJugador = idJugador;
         this.fichaEstaEnJuego = fichaEstaEnJuego;

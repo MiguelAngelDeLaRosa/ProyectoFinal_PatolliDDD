@@ -21,10 +21,11 @@ public class Tablero {
     private int contadorIzquierdo;
     private int contadorInferior;
     private int contadorDerecho;
-    
+
     /**
      * Constructor que inicializa los atributos de la clase al valor de los
-     * parámetros recibidos. Inicializa la lista de aspas a un ArrayList y llama al método
+     * parámetros recibidos. Inicializa la lista de aspas a un ArrayList y llama
+     * al método
      *
      * @param numeroDeCasillasPorAspa
      */
@@ -39,30 +40,36 @@ public class Tablero {
         listaDeAspas.add(new Aspa(contadorDerecho, numeroDeCasillasPorAspa, "derecha"));
     }
 
-    public void asignarContadores(){
-        if(numeroDeCasillasPorAspa == 5){
+    /**
+     * Asigna los contadores para la creación de las listas de casilla de las
+     * aspa, dependiendo del número de casillas por aspa que tendrá el tablero.
+     */
+    public void asignarContadores() {
+        if (numeroDeCasillasPorAspa == 5) {
             this.contadorSuperior = 2;
             this.contadorIzquierdo = 13;
             this.contadorInferior = 24;
             this.contadorDerecho = 35;
         }
-        
-        if(numeroDeCasillasPorAspa == 6){
+
+        if (numeroDeCasillasPorAspa == 6) {
             this.contadorSuperior = 2;
             this.contadorIzquierdo = 15;
             this.contadorInferior = 28;
             this.contadorDerecho = 41;
         }
-        
-        if(numeroDeCasillasPorAspa == 7){
+
+        if (numeroDeCasillasPorAspa == 7) {
             this.contadorSuperior = 2;
             this.contadorIzquierdo = 17;
             this.contadorInferior = 32;
             this.contadorDerecho = 47;
         }
     }
+
     /**
      * Retorna la lista de aspas.
+     *
      * @return ArrayList con las aspas del tablero.
      */
     public List<Aspa> getListaDeAspas() {
@@ -71,6 +78,7 @@ public class Tablero {
 
     /**
      * Establece el atributo listaDeAspas al valor del parámetro recibido.
+     *
      * @param listaDeAspas ArrayList con las aspas a asignarle al tablero.
      */
     public void setListaDeAspas(List<Aspa> listaDeAspas) {
@@ -79,6 +87,7 @@ public class Tablero {
 
     /**
      * Retorna la instancia de tipo Centro del tablero.
+     *
      * @return instancia de tipo Centro que tiene establecida el tablero.
      */
     public Centro getCentroDelTablero() {
@@ -87,7 +96,9 @@ public class Tablero {
 
     /**
      * Establece el atributo centro al valor del parámetro recibido.
-     * @param centroDelTablero isntancia de tipo Centro a establecer en el atributo.
+     *
+     * @param centroDelTablero isntancia de tipo Centro a establecer en el
+     * atributo.
      */
     public void setCentroDelTablero(Centro centroDelTablero) {
         this.centroDelTablero = centroDelTablero;
@@ -95,6 +106,7 @@ public class Tablero {
 
     /**
      * Retorna el número de casillas por aspa.
+     *
      * @return entero que indica el número de casillas por aspa.
      */
     public int getNumeroDeCasillasPorAspa() {
@@ -103,10 +115,12 @@ public class Tablero {
 
     /**
      * Establece el número de casillas por aspa.
-     * @param numeroDeCasillasPorAspa entero que indica el número de casillas por aspa.
+     *
+     * @param numeroDeCasillasPorAspa entero que indica el número de casillas
+     * por aspa.
      */
     public void setNumeroDeCasillasPorAspa(int numeroDeCasillasPorAspa) {
         this.numeroDeCasillasPorAspa = numeroDeCasillasPorAspa;
     }
-    
+
 }

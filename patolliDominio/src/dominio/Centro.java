@@ -19,6 +19,7 @@ public class Centro {
     private int idCasillaSuperiorIzquierda;
     private int idCasillaInferiorDerecha;
     private int idCasillaInferiorIzquierda;
+
     /**
      * Constructor por omisión.
      */
@@ -50,6 +51,10 @@ public class Centro {
         listaDeCasillasCentrales.add(new Casilla(idCasillaInferiorDerecha, 1, false));
     }
 
+    /**
+     * Asigna el valor inicial para las casillas de cada aspa, dependiendo del
+     * número de casillas por aspa.
+     */
     public void asignarValorAContadores() {
         if (numeroDeCasillasPorAspa == 5) {
             this.idCasillaSuperiorDerecha = 1;
@@ -72,9 +77,10 @@ public class Centro {
             this.idCasillaInferiorDerecha = 46;
         }
     }
-   
+
     /**
      * Retorna el número de casillas por aspa.
+     *
      * @return entero que indica el número de casillas por aspa.
      */
     public int getNumeroDeCasillasPorAspa() {
@@ -82,8 +88,11 @@ public class Centro {
     }
 
     /**
-     * Establece el atributo numeroDeCasillasPorAspa al valor del parámetro recibido.
-     * @param numeroDeCasillasPorAspa entero que indica el número de casillas por aspa.
+     * Establece el atributo numeroDeCasillasPorAspa al valor del parámetro
+     * recibido.
+     *
+     * @param numeroDeCasillasPorAspa entero que indica el número de casillas
+     * por aspa.
      */
     public void setNumeroDeCasillasPorAspa(int numeroDeCasillasPorAspa) {
         this.numeroDeCasillasPorAspa = numeroDeCasillasPorAspa;
@@ -91,6 +100,7 @@ public class Centro {
 
     /**
      * Retorna la lista de casillas.
+     *
      * @return ArrayList con la lista de casillas centrales.
      */
     public List<Casilla> getListaDeCasillasCentrales() {
@@ -99,7 +109,9 @@ public class Centro {
 
     /**
      * Establece la lista de casillas al valor recibido en el parámetro.
-     * @param listaDeCasillasCentrales ArrayList con la lista de casillas centrales.
+     *
+     * @param listaDeCasillasCentrales ArrayList con la lista de casillas
+     * centrales.
      */
     public void setListaDeCasillasCentrales(List<Casilla> listaDeCasillasCentrales) {
         this.listaDeCasillasCentrales = listaDeCasillasCentrales;

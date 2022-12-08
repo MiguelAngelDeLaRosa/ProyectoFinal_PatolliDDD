@@ -113,7 +113,7 @@ public class Aspa {
     }
 
     /**
-     * Estanlece el atributo tipoDeAspa al valor del parámetro recibido.
+     * Establece el atributo tipoDeAspa al valor del parámetro recibido.
      *
      * @param tipoDeAspa string que indica el tipo de aspa.
      */
@@ -140,6 +140,12 @@ public class Aspa {
         this.listaDeCasillas = listaDeCasillas;
     }
 
+    /**
+     * Retorna la primer casilla de la lista de casillas, la cual será usada
+     * como casilla inicial para un jugador.
+     *
+     * @return casilla inicial
+     */
     public Casilla getCasillaInicial() {
         return listaDeCasillas.get(0);
     }
