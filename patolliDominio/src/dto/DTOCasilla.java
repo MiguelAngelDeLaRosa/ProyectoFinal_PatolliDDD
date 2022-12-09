@@ -11,16 +11,16 @@ import dominio.Casilla;
  *
  * @author edw_v
  */
-public class DTOCasilla implements IDTO{
+public class DTOCasilla {
 
-    /**
-     * Verifica si la casilla tiene una ficha.
-     * @param casilla casilla a verificar si tiene o no una ficha.
-     * @return true en caso de tener una ficha, false en caso contrario.
-     */
-    @Override
-    public boolean casillaTieneFicha(Casilla casilla) {
-        return casillaTieneFicha(casilla);
+    private int tipoDeCasilla;
+    
+    public DTOCasilla (int tipoDeCasilla){
+        this.tipoDeCasilla = tipoDeCasilla;
+    }
+    
+    public int getTipoDeCasilla(){
+        return tipoDeCasilla;
     }
 
     
