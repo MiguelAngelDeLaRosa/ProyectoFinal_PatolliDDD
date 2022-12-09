@@ -14,13 +14,23 @@ import dominio.Casilla;
 public class DTOCasilla {
 
     private int tipoDeCasilla;
-    
-    public DTOCasilla (int tipoDeCasilla){
+    private int numeroDeCasilla;
+
+    public DTOCasilla(int tipoDeCasilla) {
         this.tipoDeCasilla = tipoDeCasilla;
+    }
+    
+    public DTOCasilla (int numeroDeCasilla, int tipoDeCasilla){
+        this.tipoDeCasilla = tipoDeCasilla;
+        this.numeroDeCasilla = numeroDeCasilla;
     }
     
     public int getTipoDeCasilla(){
         return tipoDeCasilla;
+    }
+
+    public int getNumeroDeCasilla() {
+        return numeroDeCasilla;
     }
 
     

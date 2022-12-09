@@ -5,6 +5,7 @@
 package aplicacion;
 
 import dominio.Tablero;
+import dto.DTOTablero;
 import java.awt.Color;
 import servicios.Servicios;
 
@@ -88,7 +89,7 @@ public class Aplicacion {
      *
      * @return tablero de la partida.
      */
-    public Tablero enviarTableroAPresentacion() {
+    public DTOTablero enviarTableroAPresentacion() {
         return servicios.enviarTableroAAplicacion();
     }
 }

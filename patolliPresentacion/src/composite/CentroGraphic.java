@@ -6,6 +6,8 @@ package composite;
 
 import dominio.Casilla;
 import dominio.Centro;
+import dto.DTOCasilla;
+import dto.DTOCentro;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
  */
 public class CentroGraphic implements Graphic {
 
-    private Centro centro;
+    private DTOCentro centro;
     private List<Graphic> listaDeCasillasCentrales;
     private int casillaSuperiorDerecha;
     private int casillaSuperiorIzquierda;
@@ -30,7 +32,7 @@ public class CentroGraphic implements Graphic {
      *
      * @param centro parámetro con un objeto de tipo centro.
      */
-    public CentroGraphic(Centro centro) {
+    public CentroGraphic(DTOCentro centro) {
         this.centro = centro;
         listaDeCasillasCentrales = new ArrayList<>();
         asignarValoresDeIdDeCasillasCentrales();
@@ -42,7 +44,7 @@ public class CentroGraphic implements Graphic {
      * Graphic en donde se guardarán CasillasGraphic.
      */
     public void llenarListaDeCasillasGraphic() {
-        List<Casilla> listaDeCasillas = centro.getListaDeCasillasCentrales();
+        List<DTOCasilla> listaDeCasillas = centro.getListaDeCasillasCentrales();
         listaDeCasillasCentrales.add(new CasillaGraphic(listaDeCasillas.get(0), casillaSuperiorDerecha, 480, 410, 488, 420));
         listaDeCasillasCentrales.add(new CasillaGraphic(listaDeCasillas.get(1),casillaSuperiorIzquierda, 430, 410, 438, 420));
         listaDeCasillasCentrales.add(new CasillaGraphic(listaDeCasillas.get(2),casillaInferiorIzquierda, 430, 460, 438, 470));
@@ -81,7 +83,7 @@ public class CentroGraphic implements Graphic {
      *
      * @return objeto de tipo Centro.
      */
-    public Centro getCentro() {
+    public DTOCentro getCentro() {
         return centro;
     }
 
@@ -90,7 +92,7 @@ public class CentroGraphic implements Graphic {
      *
      * @param centro parámetro con un objeto de tipo Centro
      */
-    public void setCentro(Centro centro) {
+    public void setCentro(DTOCentro centro) {
         this.centro = centro;
     }
 

@@ -5,7 +5,7 @@
 package interfaces_dominio;
 
 import dominio.Jugador;
-import dominio.Tablero;
+import dto.DTOTablero;
 import java.awt.Color;
 
 /**
@@ -26,7 +26,7 @@ public interface IAggregateRoot {
     
     public Jugador obtenerJugador(int idJugador);
     
-    public Tablero obtenerTablero();
+    public DTOTablero obtenerTablero();
     
 
 }

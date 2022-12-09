@@ -7,6 +7,7 @@ package servicios;
 import dominio.AggregatePartida;
 import dominio.Casilla;
 import dominio.Tablero;
+import dto.DTOTablero;
 import java.awt.Color;
 
 /**
@@ -128,7 +129,7 @@ public class Servicios {
      *
      * @return tablero de la partida.
      */
-    public Tablero enviarTableroAAplicacion() {
+    public DTOTablero enviarTableroAAplicacion() {
         return partida.getTablero();
     }
 

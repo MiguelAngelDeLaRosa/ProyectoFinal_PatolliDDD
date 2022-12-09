@@ -6,6 +6,8 @@ package composite;
 
 import dominio.Aspa;
 import dominio.Casilla;
+import dto.DTOAspa;
+import dto.DTOCasilla;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
  */
 public class AspaGraphic implements Graphic {
 
-    private Aspa aspa;
+    private DTOAspa aspa;
     private int x;
     private int y;
     private List<Graphic> listaDeCasillas;
@@ -25,7 +27,7 @@ public class AspaGraphic implements Graphic {
     public AspaGraphic() {
     }
 
-    public AspaGraphic(Aspa aspa, int x, int y) {
+    public AspaGraphic(DTOAspa aspa, int x, int y) {
         this.aspa = aspa;
         this.x = x;
         this.y = y;
@@ -79,7 +81,7 @@ public class AspaGraphic implements Graphic {
         int auxX = x;
         int auxY = y;
         int contadorParaObtenerCasillas = 0;
-        Casilla casilla;
+        DTOCasilla casilla;
 
         //Ciclo para crear las casillas del lado derecho
         for (int i = 0; i < numeroDeCasillasPorAspa - 1; i++) {
@@ -136,7 +138,7 @@ public class AspaGraphic implements Graphic {
         int auxX = x;
         int auxY = y;
         int contadorParaObtenerCasillas = 0;
-        Casilla casilla;
+        DTOCasilla casilla;
 
         //Ciclo para crear las casillas superiores
         for (int i = 0; i < numeroDeCasillasPorAspa - 1; i++) {
@@ -189,7 +191,7 @@ public class AspaGraphic implements Graphic {
         int auxX = x;
         int auxY = y;
         int contadorParaObtenerCasillas = 0;
-        Casilla casilla;
+        DTOCasilla casilla;
 
         //Ciclo para crear las casillas del lado derecho
         for (int i = 0; i < numeroDeCasillasPorAspa - 1; i++) {
@@ -245,7 +247,7 @@ public class AspaGraphic implements Graphic {
         int auxX = x;
         int auxY = y;
         int contadorParaObtenerCasillas = 0;
-        Casilla casilla;
+        DTOCasilla casilla;
 
         //Ciclo para crear las casillas superiores
         for (int i = 0; i < numeroDeCasillasPorAspa - 1; i++) {

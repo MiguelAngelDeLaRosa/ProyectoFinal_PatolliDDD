@@ -4,6 +4,8 @@
  */
 package dominio;
 
+import dto.DTOAspa;
+import dto.DTOCentro;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,8 @@ public class Tablero {
     //El tablero contiene una lista<Graphic> que son las aspas y el centro.
     private List<Aspa> listaDeAspas;
     private Centro centroDelTablero;
+    private List<DTOAspa> listaDTOAspas;
+    private DTOCentro centroDTO;
     private int contadorSuperior;
     private int contadorIzquierdo;
     private int contadorInferior;
@@ -32,12 +36,18 @@ public class Tablero {
     public Tablero(int numeroDeCasillasPorAspa) {
         this.numeroDeCasillasPorAspa = numeroDeCasillasPorAspa;
         listaDeAspas = new ArrayList<>();
+        listaDTOAspas = new ArrayList<>();
         centroDelTablero = new Centro(this.numeroDeCasillasPorAspa);
+        centroDTO = new DTOCentro(this.numeroDeCasillasPorAspa);
         asignarContadores();
         listaDeAspas.add(new Aspa(contadorSuperior, numeroDeCasillasPorAspa, "superior"));
         listaDeAspas.add(new Aspa(contadorIzquierdo, numeroDeCasillasPorAspa, "izquierda"));
         listaDeAspas.add(new Aspa(contadorInferior, numeroDeCasillasPorAspa, "inferior"));
         listaDeAspas.add(new Aspa(contadorDerecho, numeroDeCasillasPorAspa, "derecha"));
+        listaDTOAspas.add(new DTOAspa("superior", numeroDeCasillasPorAspa));
+        listaDTOAspas.add(new DTOAspa("izquierda", numeroDeCasillasPorAspa));
+        listaDTOAspas.add(new DTOAspa("inferior", numeroDeCasillasPorAspa));
+        listaDTOAspas.add(new DTOAspa("derecha", numeroDeCasillasPorAspa));
     }
 
     /**
@@ -121,6 +131,14 @@ public class Tablero {
      */
     public void setNumeroDeCasillasPorAspa(int numeroDeCasillasPorAspa) {
         this.numeroDeCasillasPorAspa = numeroDeCasillasPorAspa;
+    }
+
+    public List<DTOAspa> getListaDTOAspas() {
+        return listaDTOAspas;
+    }
+
+    public DTOCentro getCentroDTO() {
+        return centroDTO;
     }
 
 }

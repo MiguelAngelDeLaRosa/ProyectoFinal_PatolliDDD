@@ -17,6 +17,11 @@ public class DTOAspa {
     private int numeroDeCasillasPorAspa;
     private List<DTOCasilla> listaDeCasillas;
 
+    public DTOAspa(String tipoDeAspa, int numeroDeCasillasPorAspa) {
+        this.tipoDeAspa = tipoDeAspa;
+        this.numeroDeCasillasPorAspa = numeroDeCasillasPorAspa;
+    }
+
     public DTOAspa(String tipoDeAspa, int numeroDeCasillasPorAspa, List<DTOCasilla> listaDeCasillas) {
         this.tipoDeAspa = tipoDeAspa;
         this.numeroDeCasillasPorAspa = numeroDeCasillasPorAspa;

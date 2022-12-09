@@ -5,6 +5,7 @@
 package composite;
 
 import dominio.Casilla;
+import dto.DTOCasilla;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class CasillaGraphic implements Graphic {
 
-    private Casilla casilla;
+    private DTOCasilla casilla;
     private int numeroDeCasilla;
 
     //Coordenadas de los ejes en donde se va a dibujar la casilla.
@@ -52,7 +53,7 @@ public class CasillaGraphic implements Graphic {
      * @param puntoEnEjeYDeFicha coordenada del eje Y en donde se comenzará a
      * dibujar la ficha dentro de esta casilla.
      */
-    public CasillaGraphic(Casilla casilla, int numeroDeCasilla, int puntoEnEjeX, int puntoEnEjeY, int puntoEnEjeXDeFicha, int puntoEnEjeYDeFicha) {
+    public CasillaGraphic(DTOCasilla casilla, int numeroDeCasilla, int puntoEnEjeX, int puntoEnEjeY, int puntoEnEjeXDeFicha, int puntoEnEjeYDeFicha) {
         this.casilla = casilla;
         this.numeroDeCasilla = numeroDeCasilla;
         this.puntoEnEjeX = puntoEnEjeX;
@@ -71,7 +72,7 @@ public class CasillaGraphic implements Graphic {
      * @param arregloDePuntosEnEjeY arreglo de puntos en el eje de las Y para el
      * dibujado de las casillas triangulares.
      */
-    public CasillaGraphic(Casilla casilla, int[] arregloDePuntosEnEjeX, int[] arregloDePuntosEnEjeY) {
+    public CasillaGraphic(DTOCasilla casilla, int[] arregloDePuntosEnEjeX, int[] arregloDePuntosEnEjeY) {
         this.casilla = casilla;
         this.arregloDePuntosEnEjeX = arregloDePuntosEnEjeX;
         this.arregloDePuntosEnEjeY = arregloDePuntosEnEjeY;
@@ -96,7 +97,7 @@ public class CasillaGraphic implements Graphic {
      * @param puntoEnEjeYDeFicha coordenada del eje Y en donde se comenzará a
      * dibujar la ficha dentro de esta casilla.
      */
-    public CasillaGraphic(Casilla casilla, int numeroDeCasilla, int puntoEnEjeX, int puntoEnEjeY, double anguloInicial, double anguloFinal, int puntoEnEjeXDeFicha, int puntoEnEjeYDeFicha) {
+    public CasillaGraphic(DTOCasilla casilla, int numeroDeCasilla, int puntoEnEjeX, int puntoEnEjeY, double anguloInicial, double anguloFinal, int puntoEnEjeXDeFicha, int puntoEnEjeYDeFicha) {
         this.casilla = casilla;
         this.numeroDeCasilla = numeroDeCasilla;
         this.puntoEnEjeX = puntoEnEjeX;
@@ -160,11 +161,11 @@ public class CasillaGraphic implements Graphic {
         g2.draw(new Arc2D.Double(puntoEnEjeX, puntoEnEjeY, 100, 100, anguloInicial, anguloFinal, Arc2D.PIE));
     }
 
-    public Casilla getCasilla() {
+    public DTOCasilla getCasilla() {
         return casilla;
     }
 
-    public void setCasilla(Casilla casilla) {
+    public void setCasilla(DTOCasilla casilla) {
         this.casilla = casilla;
     }
 

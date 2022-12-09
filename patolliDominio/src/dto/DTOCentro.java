@@ -16,6 +16,10 @@ public class DTOCentro {
     private List<DTOCasilla> listaDeCasillasCentrales;
     private int numeroDeCasillasPorAspa;
 
+    public DTOCentro(int numeroDeCasillasPorAspa) {
+        this.numeroDeCasillasPorAspa = numeroDeCasillasPorAspa;
+    }
+
     public DTOCentro(List<DTOCasilla> listaDeCasillasCentrales, int numeroDeCasillasPorAspa) {
         this.listaDeCasillasCentrales = listaDeCasillasCentrales;
         this.numeroDeCasillasPorAspa = numeroDeCasillasPorAspa;

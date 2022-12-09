@@ -4,6 +4,9 @@
  */
 package dominio;
 
+import dto.DTOAspa;
+import dto.DTOCentro;
+import dto.DTOTablero;
 import interfaces_dominio.IAggregateRoot;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -126,12 +129,27 @@ public class AggregatePartida implements IAggregateRoot {
     }
 
     /**
-     * Retorna el tablero de la partida.
+     * Retorna el tableroDTO de la partida.
      *
      * @return instancia de tipo Tablero con el tablero de la partida.
      */
-    public Tablero getTablero() {
-        return tablero;
+    public DTOTablero getTablero() {
+        DTOAspa aspa0 = new DTOAspa(tablero.getListaDTOAspas().get(0).getTipoDeAspa(),
+            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(0).getListaDeCasillas());
+        DTOAspa aspa1 = new DTOAspa(tablero.getListaDTOAspas().get(1).getTipoDeAspa(),
+            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(1).getListaDeCasillas());
+        DTOAspa aspa2 = new DTOAspa(tablero.getListaDTOAspas().get(2).getTipoDeAspa(),
+            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(2).getListaDeCasillas());
+        DTOAspa aspa3 = new DTOAspa(tablero.getListaDTOAspas().get(3).getTipoDeAspa(),
+            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(3).getListaDeCasillas());
+        List<DTOAspa> listaDTOAspas = new ArrayList<>();
+        listaDTOAspas.add(aspa0);
+        listaDTOAspas.add(aspa1);
+        listaDTOAspas.add(aspa2);
+        listaDTOAspas.add(aspa3);
+        DTOCentro centro = new DTOCentro(tablero.getCentroDTO().getListaDeCasillasCentrales(), tablero.getNumeroDeCasillasPorAspa());
+        DTOTablero tableroDTO = new DTOTablero(centro, listaDTOAspas);
+        return tableroDTO;
     }
 
     /**
@@ -230,7 +248,7 @@ public class AggregatePartida implements IAggregateRoot {
     }
 
     @Override
-    public Tablero obtenerTablero() {
+    public DTOTablero obtenerTablero() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

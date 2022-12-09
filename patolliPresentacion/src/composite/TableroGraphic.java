@@ -6,6 +6,7 @@ package composite;
 
 import dominio.Aspa;
 import dominio.Tablero;
+import dto.DTOTablero;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class TableroGraphic implements Graphic {
 
-    private Tablero tablero;
+    private DTOTablero tablero;
     private List<Graphic> listaDeGraficosDelTablero;
     
 
@@ -27,17 +28,17 @@ public class TableroGraphic implements Graphic {
      *
      * @param tablero parámetro con un objeto de tipo Tablero.
      */
-    public TableroGraphic(Tablero tablero) {
+    public TableroGraphic(DTOTablero tablero) {
         this.tablero = tablero;
         listaDeGraficosDelTablero = new ArrayList<>();
         llenarListaDeGraficosDelTablero();
     }
 
-    public Tablero getTablero() {
+    public DTOTablero getTablero() {
         return tablero;
     }
 
-    public void setTablero(Tablero tablero) {
+    public void setTablero(DTOTablero tablero) {
         this.tablero = tablero;
     }
 
@@ -56,7 +57,7 @@ public class TableroGraphic implements Graphic {
      * guardarán los gráficos del tablero.
      */
     public void llenarListaDeGraficosDelTablero() {
-        CentroGraphic centroDelTablero = new CentroGraphic(tablero.getCentroDelTablero());
+        CentroGraphic centroDelTablero = new CentroGraphic(tablero.getCentroDeTablero());
         listaDeGraficosDelTablero.add(centroDelTablero);
         
         listaDeGraficosDelTablero.add(new AspaGraphic(tablero.getListaDeAspas().get(0), 480, 360));
