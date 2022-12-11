@@ -58,20 +58,16 @@ public class Aspa {
             //Si las casillas son las últimas dos, las cuales tendrán castigo.
             if (i == numeroDeCasillasPorAspa - 2 || i == numeroDeCasillasPorAspa - 3) {
                 listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 3, false));
-                listaDTOCasillas.add(new DTOCasilla(asignadorDeNumeroDeCasilla, 3));
             } else {
                 listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 2, false));
-                listaDTOCasillas.add(new DTOCasilla(asignadorDeNumeroDeCasilla, 2));
             }
             asignadorDeNumeroDeCasilla++;
         }
 
         //Se crean las dos casillas circulares.
         listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 4, false));
-        listaDTOCasillas.add(new DTOCasilla(asignadorDeNumeroDeCasilla, 4));
         asignadorDeNumeroDeCasilla++;
         listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 4, false));
-        listaDTOCasillas.add(new DTOCasilla(asignadorDeNumeroDeCasilla, 4));
         asignadorDeNumeroDeCasilla++;
 
         //Ciclo para crear la segunda hilera de casillas.
@@ -79,10 +75,8 @@ public class Aspa {
             //Si las casillas son las últimas dos, las cuales tendrán castigo.
             if (j == 0 || j == 1) {
                 listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 3, false));
-                listaDTOCasillas.add(new DTOCasilla(asignadorDeNumeroDeCasilla, 3));
             } else {
                 listaDeCasillas.add(new Casilla(asignadorDeNumeroDeCasilla, 2, false));
-                listaDTOCasillas.add(new DTOCasilla(asignadorDeNumeroDeCasilla, 2));
             }
             asignadorDeNumeroDeCasilla++;
         }

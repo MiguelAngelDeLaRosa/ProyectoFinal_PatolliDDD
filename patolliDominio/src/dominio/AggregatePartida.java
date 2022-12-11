@@ -5,6 +5,7 @@
 package dominio;
 
 import dto.DTOAspa;
+import dto.DTOCasilla;
 import dto.DTOCentro;
 import dto.DTOTablero;
 import interfaces_dominio.IAggregateRoot;
@@ -133,25 +134,24 @@ public class AggregatePartida implements IAggregateRoot {
      *
      * @return instancia de tipo Tablero con el tablero de la partida.
      */
-    public DTOTablero getTablero() {
-        DTOAspa aspa0 = new DTOAspa(tablero.getListaDTOAspas().get(0).getTipoDeAspa(),
-            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(0).getListaDeCasillas());
-        DTOAspa aspa1 = new DTOAspa(tablero.getListaDTOAspas().get(1).getTipoDeAspa(),
-            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(1).getListaDeCasillas());
-        DTOAspa aspa2 = new DTOAspa(tablero.getListaDTOAspas().get(2).getTipoDeAspa(),
-            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(2).getListaDeCasillas());
-        DTOAspa aspa3 = new DTOAspa(tablero.getListaDTOAspas().get(3).getTipoDeAspa(),
-            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(3).getListaDeCasillas());
-        List<DTOAspa> listaDTOAspas = new ArrayList<>();
-        listaDTOAspas.add(aspa0);
-        listaDTOAspas.add(aspa1);
-        listaDTOAspas.add(aspa2);
-        listaDTOAspas.add(aspa3);
-        DTOCentro centro = new DTOCentro(tablero.getCentroDTO().getListaDeCasillasCentrales(), tablero.getNumeroDeCasillasPorAspa());
-        DTOTablero tableroDTO = new DTOTablero(centro, listaDTOAspas);
-        return tableroDTO;
-    }
-
+//    public DTOTablero getTablero() {
+//        DTOAspa aspa0 = new DTOAspa(tablero.getListaDTOAspas().get(0).getTipoDeAspa(),
+//            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(0).getListaDeCasillas());
+//        DTOAspa aspa1 = new DTOAspa(tablero.getListaDTOAspas().get(1).getTipoDeAspa(),
+//            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(1).getListaDeCasillas());
+//        DTOAspa aspa2 = new DTOAspa(tablero.getListaDTOAspas().get(2).getTipoDeAspa(),
+//            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(2).getListaDeCasillas());
+//        DTOAspa aspa3 = new DTOAspa(tablero.getListaDTOAspas().get(3).getTipoDeAspa(),
+//            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(3).getListaDeCasillas());
+//        List<DTOAspa> listaDTOAspas = new ArrayList<>();
+//        listaDTOAspas.add(aspa0);
+//        listaDTOAspas.add(aspa1);
+//        listaDTOAspas.add(aspa2);
+//        listaDTOAspas.add(aspa3);
+//        DTOCentro centro = new DTOCentro(tablero.getCentroDTO().getListaDeCasillasCentrales(), tablero.getNumeroDeCasillasPorAspa());
+//        DTOTablero tableroDTO = new DTOTablero(centro, listaDTOAspas);
+//        return tableroDTO;
+//    }
     /**
      * Establece el atributo tablero al valor del parámetro recibido.
      *
@@ -249,7 +249,10 @@ public class AggregatePartida implements IAggregateRoot {
 
     @Override
     public DTOTablero obtenerTablero() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DTOCentro dtoCentro = crearDTOCentro();
+        List<DTOAspa> listaDeAspasDTO = crearListaAspasDTO();
+        DTOTablero dtoTablero = new DTOTablero(dtoCentro, listaDeAspasDTO);
+        return dtoTablero;
     }
 
     /**
@@ -261,4 +264,28 @@ public class AggregatePartida implements IAggregateRoot {
             listaDeJugadores.get(i).setCasillaDeSalida(arregloParaAsignarCasillasEntradaSalida[i][1]);
         }
     }
+
+    public DTOCentro crearDTOCentro() {
+        List<DTOCasilla> listaDeDTOCasillas = new ArrayList<>();
+        for (Casilla c : tablero.getCentroDelTablero().getListaDeCasillasCentrales()) {
+            DTOCasilla dtoCasilla = new DTOCasilla(c.getTipoDeCasilla(), c.getNumeroDeCasilla(), c.isCasillaTieneFicha());
+            listaDeDTOCasillas.add(dtoCasilla);
+        }
+        DTOCentro dtoCentro = new DTOCentro(listaDeDTOCasillas);
+        return dtoCentro;
+    }
+
+    public List<DTOAspa> crearListaAspasDTO() {
+        List<DTOAspa> listaDeAspasDTO = new ArrayList<>();
+        for (Aspa aspa : tablero.getListaDeAspas()) {
+            List<DTOCasilla> listaDTOCasillas = new ArrayList<>();
+            for (Casilla c : aspa.getListaDeCasillas()) {
+                DTOCasilla dtoCasilla = new DTOCasilla(c.getTipoDeCasilla(), c.getNumeroDeCasilla(), c.isCasillaTieneFicha());
+                listaDTOCasillas.add(dtoCasilla);
+            }
+            DTOAspa dtoAspa = new DTOAspa(aspa.getTipoDeAspa(), aspa.getNumeroDeCasillasPorAspa(), listaDTOCasillas);
+        }
+        return listaDeAspasDTO;
+    }
+
 }

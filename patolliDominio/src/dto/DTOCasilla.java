@@ -15,14 +15,16 @@ public class DTOCasilla {
 
     private int tipoDeCasilla;
     private int numeroDeCasilla;
+    private boolean isCasillaOcupada;
 
     public DTOCasilla(int tipoDeCasilla) {
         this.tipoDeCasilla = tipoDeCasilla;
     }
     
-    public DTOCasilla (int numeroDeCasilla, int tipoDeCasilla){
+    public DTOCasilla (int numeroDeCasilla, int tipoDeCasilla, boolean isCasillaOcupada){
         this.tipoDeCasilla = tipoDeCasilla;
         this.numeroDeCasilla = numeroDeCasilla;
+        this.isCasillaOcupada = isCasillaOcupada;
     }
     
     public int getTipoDeCasilla(){
