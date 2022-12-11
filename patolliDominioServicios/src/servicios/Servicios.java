@@ -130,7 +130,7 @@ public class Servicios {
      * @return tablero de la partida.
      */
     public DTOTablero enviarTableroAAplicacion() {
-        return partida.getTablero();
+        return partida.obtenerTablero();
     }
 
     /**

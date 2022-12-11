@@ -271,7 +271,7 @@ public class AggregatePartida implements IAggregateRoot {
             DTOCasilla dtoCasilla = new DTOCasilla(c.getTipoDeCasilla(), c.getNumeroDeCasilla(), c.isCasillaTieneFicha());
             listaDeDTOCasillas.add(dtoCasilla);
         }
-        DTOCentro dtoCentro = new DTOCentro(listaDeDTOCasillas);
+        DTOCentro dtoCentro = new DTOCentro(listaDeDTOCasillas, tablero.getNumeroDeCasillasPorAspa());
         return dtoCentro;
     }
 
