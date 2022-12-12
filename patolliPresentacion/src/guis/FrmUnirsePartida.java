@@ -141,9 +141,10 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
         casosDeUso.unirseAPartida(txtNombreDeJugador.getText(), colorSeleccionado());
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmConfigurarPartida(casosDeUso).setVisible(true);
+                new FrmTablero(casosDeUso).setVisible(true);
             }
         });
+        this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public Color colorSeleccionado() {

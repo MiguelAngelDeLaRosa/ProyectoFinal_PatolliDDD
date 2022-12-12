@@ -134,7 +134,11 @@ public class AggregatePartida implements IAggregateRoot {
      *
      * @return instancia de tipo Tablero con el tablero de la partida.
      */
-//    public DTOTablero getTablero() {
+    public DTOTablero getTablero() {
+        DTOCentro dtoCentro = crearDTOCentro();
+        List<DTOAspa> listaDeAspasDTO = crearListaAspasDTO();
+        DTOTablero dtoTablero = new DTOTablero(dtoCentro, listaDeAspasDTO);
+        return dtoTablero;
 //        DTOAspa aspa0 = new DTOAspa(tablero.getListaDTOAspas().get(0).getTipoDeAspa(),
 //            tablero.getNumeroDeCasillasPorAspa(), tablero.getListaDTOAspas().get(0).getListaDeCasillas());
 //        DTOAspa aspa1 = new DTOAspa(tablero.getListaDTOAspas().get(1).getTipoDeAspa(),
@@ -151,7 +155,8 @@ public class AggregatePartida implements IAggregateRoot {
 //        DTOCentro centro = new DTOCentro(tablero.getCentroDTO().getListaDeCasillasCentrales(), tablero.getNumeroDeCasillasPorAspa());
 //        DTOTablero tableroDTO = new DTOTablero(centro, listaDTOAspas);
 //        return tableroDTO;
-//    }
+    }
+
     /**
      * Establece el atributo tablero al valor del parámetro recibido.
      *
@@ -283,6 +288,8 @@ public class AggregatePartida implements IAggregateRoot {
             listaDeDTOCasillas.add(dtoCasilla);
         }
         DTOCentro dtoCentro = new DTOCentro(listaDeDTOCasillas, tablero.getNumeroDeCasillasPorAspa());
+//        DTOCentro dtoCentro = tablero.getCentroDTO();
+//        dtoCentro.setListaDeCasillasCentrales(listaDeDTOCasillas);
         return dtoCentro;
     }
 
@@ -303,11 +310,13 @@ public class AggregatePartida implements IAggregateRoot {
             DTOAspa dtoAspa = new DTOAspa(aspa.getTipoDeAspa(), aspa.getNumeroDeCasillasPorAspa(), listaDTOCasillas);
             listaDeAspasDTO.add(dtoAspa);
         }
+
         return listaDeAspasDTO;
     }
 
     /**
      * Verifica si la casilla que coincida con el id recibido tiene ficha.
+     *
      * @param numeroDeCasilla id de la ficha.
      * @return booleano que indica si la casilla tiene o no una ficha.
      */

@@ -4,6 +4,9 @@
  */
 package guis;
 
+import aplicacion.Aplicacion;
+import composite.TableroGraphic;
+
 /**
  *
  * @author edw_v
@@ -75,6 +78,9 @@ public class Pruebas extends javax.swing.JFrame {
                 new Pruebas().setVisible(true);
             }
         });
+        Aplicacion aplicacion = new Aplicacion(1001);
+//        TableroGraphic tablero = new TableroGraphic(aplicacion.enviarTableroAPresentacion());
+        System.out.println(aplicacion.enviarTableroAPresentacion());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

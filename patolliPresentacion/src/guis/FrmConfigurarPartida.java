@@ -256,7 +256,7 @@ public class FrmConfigurarPartida extends javax.swing.JFrame {
                     new FrmTablero(casosDeUso).setVisible(true);
                 }
             });
-            dispose();
+            this.dispose();
         } else {
             JOptionPane.showConfirmDialog(null, error, "ERROR EN CAMPOS", JOptionPane.ERROR_MESSAGE);
         }
