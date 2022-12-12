@@ -6,6 +6,7 @@
 package guis;
 
 import aplicacion.Aplicacion;
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -33,22 +34,20 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        validaNombre = new javax.swing.JTextField();
+        txtNombreDeJugador = new javax.swing.JTextField();
         comboBoxColores = new javax.swing.JComboBox<>();
         btnRegresar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        validaIp = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Unirse a Partida");
         setResizable(false);
 
-        validaNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombreDeJugador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaNombreKeyTyped(evt);
+                txtNombreDeJugadorKeyTyped(evt);
             }
         });
 
@@ -72,14 +71,6 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guis/Imagenes/txtColorJugador.png"))); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guis/Imagenes/txtIpServidor.png"))); // NOI18N
-
-        validaIp.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                validaIpKeyTyped(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,8 +84,7 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))))
+                            .addComponent(jLabel1))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
@@ -102,9 +92,7 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
                         .addGap(66, 66, 66))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(validaIp, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(validaNombre))
+                        .addComponent(txtNombreDeJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -117,18 +105,14 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(validaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombreDeJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(comboBoxColores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(validaIp, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -139,10 +123,10 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void validaNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_validaNombreKeyTyped
+    private void txtNombreDeJugadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDeJugadorKeyTyped
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_validaNombreKeyTyped
+    }//GEN-LAST:event_txtNombreDeJugadorKeyTyped
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -154,16 +138,39 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+        casosDeUso.unirseAPartida(txtNombreDeJugador.getText(), colorSeleccionado());
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmConfigurarPartida(casosDeUso).setVisible(true);
+            }
+        });
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    private void validaIpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_validaIpKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_validaIpKeyTyped
+    public Color colorSeleccionado() {
+        Color color = null;
+        String colorSeleccionado = comboBoxColores.getSelectedItem().toString();
 
+        switch (colorSeleccionado) {
+            case "Azul":
+                color = Color.BLUE;
+                break;
+            case "Verde":
+                color = Color.GREEN;
+                break;
+            case "Rojo":
+                color = Color.RED;
+                break;
+            case "Amarillo":
+                color = Color.YELLOW;
+                break;
+        }
+
+        return color;
+    }
+    
     public boolean validarConfig() {
 
-        if (this.validaNombre.getText().isEmpty()) {
+        if (this.txtNombreDeJugador.getText().isEmpty()) {
             this.mostrarMensajeError("Establece el nombre del jugador");
             return true;
         }
@@ -184,8 +191,6 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxColores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField validaIp;
-    private javax.swing.JTextField validaNombre;
+    private javax.swing.JTextField txtNombreDeJugador;
     // End of variables declaration//GEN-END:variables
 }

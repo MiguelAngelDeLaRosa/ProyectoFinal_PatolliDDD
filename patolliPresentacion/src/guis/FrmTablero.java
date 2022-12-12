@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,19 +21,19 @@ import java.util.Random;
 public class FrmTablero extends javax.swing.JFrame implements Observer {
 
     private TableroGraphic tablero;
-    private Aplicacion casosDeUso; 
+    private Aplicacion aplicacion;
     private Graphics g;
     private int numeroDeJugadorEnTurno;
-    
+
     public FrmTablero(Aplicacion casosDeUso) {
         initComponents();
-        this.casosDeUso = casosDeUso;
+        this.aplicacion = casosDeUso;
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        tablero = new TableroGraphic(casosDeUso.enviarTableroAPresentacion());
+        tablero = new TableroGraphic(aplicacion.enviarTableroAPresentacion());
         tablero.dibujar(g);
     }
 
@@ -180,10 +181,14 @@ public class FrmTablero extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_btnSiguienteTurnoActionPerformed
 
     private void btnIniciarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarPartidaActionPerformed
-        btnLanzarDados.setEnabled(true);
-        btnSiguienteTurno.setEnabled(true);
-        btnIniciarPartida.setVisible(false);
-        numeroDeJugadorEnTurno = 1;
+        if (aplicacion.iniciarPartida()) {
+            btnLanzarDados.setEnabled(true);
+            btnSiguienteTurno.setEnabled(true);
+            btnIniciarPartida.setVisible(false);
+            numeroDeJugadorEnTurno = 1;
+        }else{
+            JOptionPane.showMessageDialog(null, "Faltan jugadores para poder iniciar la partida", "ERROR AL INICIAR PARTIDA", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnIniciarPartidaActionPerformed
 
     int avanceD;
@@ -249,8 +254,9 @@ public class FrmTablero extends javax.swing.JFrame implements Observer {
         return numeroCanias;
 
     }
+
     /**
-     * Método que limpia las cañas, este método se planea eliminar 
+     * Método que limpia las cañas, este método se planea eliminar
      */
     private void limpiarCañas() {
         caña1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/guis/Imagenes/cañaL.png")));

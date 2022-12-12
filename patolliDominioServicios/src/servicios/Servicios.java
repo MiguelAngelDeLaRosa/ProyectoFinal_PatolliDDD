@@ -169,4 +169,8 @@ public class Servicios {
     public void setCantidadDeJugadores(int cantidadDeJugadores) {
         this.cantidadDeJugadores = cantidadDeJugadores;
     }
+    
+    public boolean casillaTieneFicha(int numeroDeFicha){
+        return partida.verificarSiCasillaEstaOcupada(numeroDeFicha);
+    }
 }

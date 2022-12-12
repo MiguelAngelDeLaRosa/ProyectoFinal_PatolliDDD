@@ -16,7 +16,7 @@ public interface IAggregateRoot {
     
     public void crearTablero(int numCasillas);
     
-    public boolean verificarNumeroDeJugadores();
+    public boolean verificarNumeroDeJugadores(int numeroDeJugadores);
     
     public void agregarJugador(String nombreDelJugador, Color colorDeFicha, int puntosParaApostar);
     

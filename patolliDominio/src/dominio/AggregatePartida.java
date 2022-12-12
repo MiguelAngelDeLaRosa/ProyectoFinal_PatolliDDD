@@ -228,8 +228,8 @@ public class AggregatePartida implements IAggregateRoot {
     }
 
     @Override
-    public boolean verificarNumeroDeJugadores() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean verificarNumeroDeJugadores(int numeroDeJugadores) {
+        return true;
     }
 
     @Override
@@ -247,6 +247,11 @@ public class AggregatePartida implements IAggregateRoot {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Crea un DTOTablero con la información del tablero y lo retorna.
+     *
+     * @return instancia de DTOTablero.
+     */
     @Override
     public DTOTablero obtenerTablero() {
         DTOCentro dtoCentro = crearDTOCentro();
@@ -265,6 +270,12 @@ public class AggregatePartida implements IAggregateRoot {
         }
     }
 
+    /**
+     * Crea una instancia de DTOCentro con los valores del centro del tablero y
+     * la retorna.
+     *
+     * @return instancia de DTOCentro.
+     */
     public DTOCentro crearDTOCentro() {
         List<DTOCasilla> listaDeDTOCasillas = new ArrayList<>();
         for (Casilla c : tablero.getCentroDelTablero().getListaDeCasillasCentrales()) {
@@ -275,6 +286,12 @@ public class AggregatePartida implements IAggregateRoot {
         return dtoCentro;
     }
 
+    /**
+     * Crea una lista de DTOAspa con los valores obtenidos de las aspas del
+     * tablero.
+     *
+     * @return ArrayList de DTOAspas.
+     */
     public List<DTOAspa> crearListaAspasDTO() {
         List<DTOAspa> listaDeAspasDTO = new ArrayList<>();
         for (Aspa aspa : tablero.getListaDeAspas()) {
@@ -284,8 +301,42 @@ public class AggregatePartida implements IAggregateRoot {
                 listaDTOCasillas.add(dtoCasilla);
             }
             DTOAspa dtoAspa = new DTOAspa(aspa.getTipoDeAspa(), aspa.getNumeroDeCasillasPorAspa(), listaDTOCasillas);
+            listaDeAspasDTO.add(dtoAspa);
         }
         return listaDeAspasDTO;
     }
 
+    /**
+     * Verifica si la casilla que coincida con el id recibido tiene ficha.
+     * @param numeroDeCasilla id de la ficha.
+     * @return booleano que indica si la casilla tiene o no una ficha.
+     */
+    public boolean verificarSiCasillaEstaOcupada(int numeroDeCasilla) {
+
+        boolean respuesta = false;
+        Casilla casilla = new Casilla(numeroDeCasilla);
+
+        /*
+        El ciclo se detendrá cuando se encuentre la casilla que coincida con el id de casilla recibido en el parámetro. 
+        Si no lo encuentra, pasará a recorrer la lista de casillas de cada aspa.
+         */
+        for (Casilla c : tablero.getCentroDelTablero().getListaDeCasillasCentrales()) {
+            if (casilla.getNumeroDeCasilla() == c.getNumeroDeCasilla()) {
+                respuesta = c.isCasillaTieneFicha();
+                return respuesta;
+            }
+        }
+
+        //El ciclo se detendrá cuando se encuentre la casilla que coincida con el id de casilla recibido en el parámetro.
+        for (Aspa a : tablero.getListaDeAspas()) {
+            for (Casilla c : a.getListaDeCasillas()) {
+                if (casilla.getNumeroDeCasilla() == c.getNumeroDeCasilla()) {
+                    respuesta = c.isCasillaTieneFicha();
+                    return respuesta;
+                }
+            }
+        }
+
+        return respuesta;
+    }
 }

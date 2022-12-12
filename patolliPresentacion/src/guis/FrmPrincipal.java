@@ -106,7 +106,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 new FrmConfigurarPartida(casosDeUso).setVisible(true);
             }
         });
-        this.dispose();
+
     }//GEN-LAST:event_btnCrearPartidaActionPerformed
 
     private void btnUnirsePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnirsePartidaActionPerformed

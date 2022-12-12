@@ -92,4 +92,8 @@ public class Aplicacion {
     public DTOTablero enviarTableroAPresentacion() {
         return servicios.enviarTableroAAplicacion();
     }
+    
+    public boolean casillaTieneFicha(int numeroDeFicha){
+        return servicios.casillaTieneFicha(numeroDeFicha);
+    }
 }

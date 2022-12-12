@@ -35,5 +35,8 @@ public class DTOCasilla {
         return numeroDeCasilla;
     }
 
+    public boolean isIsCasillaOcupada() {
+        return isCasillaOcupada;
+    }
     
 }
